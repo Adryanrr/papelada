@@ -25,7 +25,9 @@ def nome_seguro(nome: str) -> str:
 
 def pasta_saida(base: Path, destino: str | None) -> Path:
     """Pasta de saida escolhida pelo usuario ou `Papelada_saida` ao lado da entrada."""
-    saida = Path(destino).expanduser() if destino else base / PASTA_SAIDA_NOME
+    # se o arquivo ja esta dentro de Papelada_saida, grava ali mesmo (sem aninhar outra pasta)
+    padrao = base if base.name == PASTA_SAIDA_NOME else base / PASTA_SAIDA_NOME
+    saida = Path(destino).expanduser() if destino else padrao
     saida.mkdir(parents=True, exist_ok=True)
     return saida
 

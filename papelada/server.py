@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import atexit
+import inspect
 import itertools
 import json
 import shutil
@@ -18,7 +19,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 
-from . import __version__, convert, fsbrowse, images, merge, preview, remove, split
+from . import __version__, batch, convert, export, fsbrowse, images, merge, optimize, pages, preview, remove, security, split, watermark
 
 HOST = "127.0.0.1"
 PORTA_PADRAO = 8765
@@ -109,6 +110,40 @@ def _api_remover(p: dict) -> dict:
     return r
 
 
+# Ferramentas de uma chamada so: nome -> (funcao, sufixo do arquivo, extensao ou None para pasta, so um PDF?)
+FERRAMENTAS = {
+    "rotate": (pages.girar, "_girado", ".pdf", False),
+    "organize": (pages.organizar, "_organizado", ".pdf", True),
+    "number": (pages.numerar, "_numerado", ".pdf", False),
+    "watermark": (watermark.marca_dagua, "_marca-dagua", ".pdf", False),
+    "crop": (pages.recortar, "_recortado", ".pdf", False),
+    "protect": (security.proteger, "_protegido", ".pdf", False),
+    "unlock": (security.desbloquear, "_desbloqueado", ".pdf", False),
+    "compress": (optimize.comprimir, "_comprimido", ".pdf", False),
+    "repair": (optimize.reparar, "_reparado", ".pdf", False),
+    "tojpg": (export.pdf_para_jpg, "_imagens", None, False),
+    "tomd": (export.pdf_para_markdown, "", ".md", False),
+}
+
+
+def _api_ferramenta(p: dict) -> dict:
+    """Roda uma ferramenta de PDF em um arquivo ou numa pasta de PDFs."""
+    nome = str(p.get("tool") or "")
+    if nome not in FERRAMENTAS:
+        raise ValueError("Ferramenta desconhecida.")
+    fn, sufixo, ext, so_arquivo = FERRAMENTAS[nome]
+    opcoes = p.get("options") or {}
+    if not isinstance(opcoes, dict):
+        raise ValueError("Opções inválidas.")
+    aceitos = set(inspect.signature(fn).parameters) - {"pdf", "saida"}
+    desconhecidas = set(opcoes) - aceitos
+    if desconhecidas:
+        raise ValueError(f"Opção desconhecida: {sorted(desconhecidas)[0]}")
+    r = batch.aplicar(_pasta(p), p.get("output") or None, fn, sufixo, ext, so_arquivo, **opcoes)
+    _registrar(r["output"], *(x["output"] for x in r["resultados"]))
+    return r
+
+
 def _api_previa_arquivo(p: dict) -> dict:
     """Registra um PDF escolhido pelo usuario para ser visualizado."""
     pdf = _pasta(p)
@@ -172,6 +207,7 @@ ROTAS = {
     "/api/images-preview": _api_previa_imagens,
     "/api/images": _api_imagens,
     "/api/remove-pages": _api_remover,
+    "/api/tool": _api_ferramenta,
     "/api/merge": _api_juntar,
     "/api/batch": _api_lote,
     "/api/split": _api_separar,
@@ -311,6 +347,9 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--no-browser", action="store_true", help="nao abrir nada (so o servidor)")
     ap.add_argument("--version", action="version", version=f"Papelada {__version__}")
     args = ap.parse_args(argv)
+    for nome in ("stdout", "stderr"):  # app sem console: bibliotecas que imprimem nao podem quebrar
+        if getattr(sys, nome) is None:
+            setattr(sys, nome, open(os.devnull, "w"))
 
     servidor = criar_servidor(args.port)
     url = f"http://{HOST}:{servidor.server_address[1]}"

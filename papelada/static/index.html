@@ -49,7 +49,7 @@ aside{display:flex;flex-direction:column;padding:18px 10px 12px;background:var(-
 .brand{display:flex;align-items:center;gap:10px;padding:2px 8px 18px}
 .brand img{width:30px;height:30px;border-radius:7px;box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 3px rgba(0,0,0,.15)}
 .brand b{font-size:17px;font-weight:700;letter-spacing:-.02em}
-nav{display:flex;flex-direction:column;gap:2px}
+nav{display:flex;flex-direction:column;gap:2px;flex:1;min-height:0;overflow:auto;padding-bottom:6px}
 nav button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:7px 10px;border:0;border-radius:8px;background:none;font-weight:500;cursor:pointer;transition:background-color .14s ease,color .14s ease}
 nav button svg{color:var(--blue)}
 nav button[aria-selected=true]{background:var(--blue);color:#fff}
@@ -77,10 +77,15 @@ section.on{display:block;animation:in .26s var(--ease-out)}
 .fr.col{align-items:flex-start;flex-direction:column;gap:2px}
 .note{padding:0 14px 12px;color:var(--label2);font-size:12px;text-wrap:pretty}
 .cap{margin:-6px 14px 16px;color:var(--label2);font-size:12px}
-input[type=text]{flex:1;min-width:0;height:30px;padding:0 10px;border:.5px solid var(--sep);border-radius:7px;background:var(--field);box-shadow:inset 0 1px 1px rgba(0,0,0,.04);transition:box-shadow .14s ease,border-color .14s ease}
-input[type=text]::placeholder{color:var(--label3)}
-input[type=text]:focus{border-color:var(--blue)}
+input[type=text],input[type=password],input[type=number]{flex:1;min-width:0;height:30px;padding:0 10px;border:.5px solid var(--sep);border-radius:7px;background:var(--field);box-shadow:inset 0 1px 1px rgba(0,0,0,.04);transition:box-shadow .14s ease,border-color .14s ease}
+input::placeholder{color:var(--label3)}
+input[type=text]:focus,input[type=password]:focus,input[type=number]:focus,select:focus{border-color:var(--blue)}
 
+select{appearance:none;-webkit-appearance:none;flex:1;min-width:0;height:30px;padding:0 28px 0 10px;border:.5px solid var(--sep);border-radius:7px;color:inherit;cursor:pointer;background:var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%238e8e93' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E") right 9px center/11px no-repeat}
+input[type=number]{flex:none;width:110px}
+input[type=color]{flex:none;width:46px;height:30px;padding:2px;border:.5px solid var(--sep);border-radius:7px;background:var(--field);cursor:pointer}
+.un{color:var(--label2);font-size:12px}
+.nota-f{padding:0 14px 12px;color:var(--label2);font-size:12px}
 /* Botoes */
 .b{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:0 14px;border:.5px solid var(--sep);border-radius:8px;background:var(--card);color:var(--label);font-weight:500;cursor:pointer;box-shadow:0 .5px 1px rgba(0,0,0,.08);transition:transform .16s var(--ease-out),background-color .14s ease,opacity .14s ease}
 .b:active:not(:disabled){transform:scale(.97)}
@@ -162,6 +167,10 @@ input.sw:checked::after{transform:translateX(17px)}
 #v-img{display:block;max-width:100%;height:auto;align-self:flex-start;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.15),0 6px 24px rgba(0,0,0,.2);transition:opacity .15s ease}
 #v-img.ld{opacity:.35}
 
+.ord.pg .ord-list{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.ord.pg .ov{gap:2px}
+.ord.pg .ov .ib{width:22px;height:22px}
+.th img{transition:transform .2s var(--ease-out)}
 .nav-h{padding:14px 10px 4px;font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--label2)}
 .pgc.del{border-color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent)}
 .pgc.del .th::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.62) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23d70015' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M5 5l10 10M15 5L5 15'/%3E%3C/svg%3E") center/38% no-repeat}
@@ -210,16 +219,7 @@ dialog::backdrop{background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(3px);ba
 <div class="app">
 <aside>
   <div class="brand"><img src="/static/icon.svg" alt=""><b>Papelada</b></div>
-  <nav role="tablist" aria-label="Ferramentas">
-    <div class="nav-h">Organizar</div>
-    <button role="tab" aria-selected="true" data-tab="merge" title="⌘1"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="3" width="10" height="12" rx="2"/><path d="M4 7v8a2 2 0 0 0 2 2h7"/></svg>Juntar</button>
-    <button role="tab" aria-selected="false" data-tab="split" title="⌘2"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="5.5" cy="5.5" r="2.2"/><circle cx="5.5" cy="14.5" r="2.2"/><path d="M7.2 7l10 8M7.2 13l10-8"/></svg>Separar</button>
-    <button role="tab" aria-selected="false" data-tab="remove" title="⌘3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3h7l4 4v10H5z"/><path d="M8 11h5"/></svg>Remover páginas</button>
-    <div class="nav-h">Converter</div>
-    <button role="tab" aria-selected="false" data-tab="images" title="⌘4"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"/><circle cx="7.5" cy="8.5" r="1.4"/><path d="M3.5 14l4-3.5 3 2.5 2.5-2 3.5 3"/></svg>Imagens para PDF</button>
-    <button role="tab" aria-selected="false" data-tab="word" title="⌘5"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 0 1 10.5-3L16 7M16 12a6 6 0 0 1-10.5 3L4 13"/><path d="M16 3v4h-4M4 17v-4h4"/></svg>PDF para Word</button>
-  </nav>
-  <div class="spacer"></div>
+  <nav id="nav" role="tablist" aria-label="Ferramentas"></nav>
   <button class="ghost" id="quit" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2M12 6l4 4-4 4M16 10H8"/></svg><span>Encerrar</span></button>
 </aside>
 
@@ -289,6 +289,25 @@ dialog::backdrop{background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(3px);ba
     <div class="pgs" id="r-pages"></div>
   </div>
   <div class="actions"><button class="b p" id="r-go" type="button">Remover páginas</button></div>
+</section>
+
+<section id="organize" aria-labelledby="t-organize">
+  <header class="ph"><h1 id="t-organize">Organizar páginas</h1><p>Reordene arrastando, gire e apague páginas de um PDF. Salva uma cópia nova.</p></header>
+  <div class="group">
+    <div class="fr"><label class="lb" for="o-path">Arquivo</label><div class="ct"><input type="text" id="o-path" placeholder="Escolha um PDF"><button class="b" data-pick="o-path" data-kind="remove" type="button">Escolher…</button></div></div>
+    <div class="fr"><label class="lb" for="o-out">Salvar em<small>Opcional</small></label><div class="ct"><input type="text" id="o-out" placeholder="Padrão: Papelada_saida ao lado"></div></div>
+  </div>
+  <div id="o-ord" class="group ord pg" hidden>
+    <div class="ord-bar">
+      <button class="b" data-sort="rotall" type="button">Girar todas ↻</button>
+      <button class="b" data-sort="rev" type="button">Inverter ordem</button>
+      <button class="b" data-sort="reset" type="button">Restaurar</button>
+      <span class="ord-sum"></span>
+    </div>
+    <ol class="ord-list"></ol>
+    <div class="ord-out" hidden></div>
+  </div>
+  <div class="actions"><button class="b p" id="o-go" type="button">Salvar PDF</button></div>
 </section>
 
 <section id="images" aria-labelledby="t-images">
@@ -385,6 +404,148 @@ async function run(btn, texto, fn) {
   show(`<span class="spin"></span>${texto}`);
   try { show(await fn()); } catch (e) { show(esc(e.message), true); } finally { btn.disabled = false; }
 }
+
+// ---- barra lateral e ferramentas ----
+const ic = p => `<svg viewBox="0 0 20 20" aria-hidden="true">${p}</svg>`;
+const ICONES = {
+  merge: '<rect x="7" y="3" width="10" height="12" rx="2"/><path d="M4 7v8a2 2 0 0 0 2 2h7"/>',
+  split: '<circle cx="5.5" cy="5.5" r="2.2"/><circle cx="5.5" cy="14.5" r="2.2"/><path d="M7.2 7l10 8M7.2 13l10-8"/>',
+  remove: '<path d="M5 3h7l4 4v10H5z"/><path d="M8 11h5"/>',
+  organize: '<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1"/>',
+  rotate: '<path d="M16 10a6 6 0 1 1-2-4.5"/><path d="M16 3v4h-4"/>',
+  compress: '<path d="M10 3v5M7 6l3 3 3-3M10 17v-5M7 14l3-3 3 3"/>',
+  repair: '<path d="M13.5 3.5a3.5 3.5 0 0 0-4.2 4.6L3.5 14a1.4 1.4 0 0 0 2 2l5.9-5.8a3.5 3.5 0 0 0 4.6-4.2l-2.2 2.2-1.8-.4-.4-1.8z"/>',
+  images: '<rect x="3" y="4" width="14" height="12" rx="2"/><circle cx="7.5" cy="8.5" r="1.4"/><path d="M3.5 14l4-3.5 3 2.5 2.5-2 3.5 3"/>',
+  tojpg: '<rect x="3" y="4" width="14" height="12" rx="2"/><path d="M7 9.5l3 3 3-3M10 6.5v6"/>',
+  word: '<path d="M4 8a6 6 0 0 1 10.5-3L16 7M16 12a6 6 0 0 1-10.5 3L4 13"/><path d="M16 3v4h-4M4 17v-4h4"/>',
+  tomd: '<rect x="3" y="5" width="14" height="10" rx="2"/><path d="M6 12V8l2 2.5L10 8v4M14 8v4M12.5 10.5L14 12l1.5-1.5"/>',
+  number: '<path d="M8 4l-1 12M13 4l-1 12M4 8h13M3 12h13"/>',
+  watermark: '<path d="M10 3c3 4 5 6 5 8.5a5 5 0 0 1-10 0C5 9 7 7 10 3z"/>',
+  crop: '<path d="M6 3v11h11M3 6h11v11"/>',
+  protect: '<rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9"/>',
+  unlock: '<rect x="4" y="9" width="12" height="8" rx="2"/><path d="M7 9V6.5a3 3 0 0 1 5.6-1.5"/>'};
+const NAV = [
+  {h: 'Organizar'}, {id: 'merge', t: 'Juntar'}, {id: 'split', t: 'Separar'}, {id: 'remove', t: 'Remover páginas'},
+  {id: 'organize', t: 'Organizar páginas'}, {id: 'rotate', t: 'Girar páginas'},
+  {h: 'Otimizar'}, {id: 'compress', t: 'Comprimir'}, {id: 'repair', t: 'Reparar'},
+  {h: 'Converter'}, {id: 'images', t: 'Imagens para PDF'}, {id: 'tojpg', t: 'PDF para imagens'}, {id: 'word', t: 'PDF para Word'}, {id: 'tomd', t: 'PDF para Markdown'},
+  {h: 'Editar'}, {id: 'number', t: 'Números de página'}, {id: 'watermark', t: 'Marca d\'água'}, {id: 'crop', t: 'Recortar'},
+  {h: 'Segurança'}, {id: 'protect', t: 'Proteger'}, {id: 'unlock', t: 'Desbloquear'}];
+{
+  let n = 0;
+  $('nav').innerHTML = NAV.map(x => x.h ? `<div class="nav-h">${x.h}</div>`
+    : `<button role="tab" aria-selected="${x.id === 'merge'}" data-tab="${x.id}" ${++n <= 9 ? `title="⌘${n}"` : ''}>${ic(ICONES[x.id])}${x.t}</button>`).join('');
+}
+
+const selHtml = (id, ops, v) => `<select id="${id}">${ops.map(([k, t]) => `<option value="${k}" ${k === v ? 'selected' : ''}>${t}</option>`).join('')}</select>`;
+function campoHtml(f, c) {
+  const id = `${f.id}-${c.id}`, d = `data-campo="${c.id}"`;
+  const lab = `<label class="lb" for="${id}">${c.rotulo}${c.dica ? `<small>${c.dica}</small>` : ''}</label>`;
+  const un = c.unidade ? `<span class="un">${c.unidade}</span>` : '';
+  if (c.tipo === 'nota') return `<div class="nota-f" ${d}>${c.texto}</div>`;
+  if (c.tipo === 'seg') return `<div class="fr" ${d}><span class="lb" id="${id}-l">${c.rotulo}</span><div class="seg" role="radiogroup" aria-labelledby="${id}-l" ${d}>${c.opcoes.map(([v, t]) => `<button type="button" role="radio" aria-checked="${v === c.padrao}" data-v="${v}">${t}</button>`).join('')}</div></div>`;
+  if (c.tipo === 'check') return `<div class="fr" ${d}>${lab}<div class="ct" style="justify-content:flex-end"><input type="checkbox" class="sw" role="switch" id="${id}" ${c.padrao ? 'checked' : ''}></div></div>`;
+  let ctl;
+  if (c.tipo === 'select') ctl = selHtml(id, c.opcoes, c.padrao);
+  else if (c.tipo === 'cor') ctl = `<input type="color" id="${id}" value="${c.padrao || '#000000'}">`;
+  else if (c.tipo === 'arquivo') ctl = `<input type="text" id="${id}" placeholder="${c.placeholder || ''}"><button class="b" data-pick="${id}" data-kind="images" type="button">Escolher…</button>`;
+  else if (c.tipo === 'num') ctl = `<input type="number" id="${id}" value="${c.padrao ?? ''}" min="${c.min ?? ''}" max="${c.max ?? ''}" step="${c.passo ?? 1}">${un}`;
+  else ctl = `<input type="${c.tipo === 'senha' ? 'password' : 'text'}" id="${id}" placeholder="${c.placeholder || ''}" autocomplete="off">`;
+  return `<div class="fr" ${d}>${lab}<div class="ct">${ctl}</div></div>`;
+}
+function montarFerramenta(f) {
+  const pdf = f.entrada === 'pdf', sec = document.createElement('section');
+  sec.id = f.id; sec.setAttribute('aria-labelledby', `t-${f.id}`);
+  sec.innerHTML = `<header class="ph"><h1 id="t-${f.id}">${f.titulo}</h1><p>${f.desc}</p></header>
+  <div class="group"><div class="fr"><label class="lb" for="${f.id}-path">${pdf ? 'Arquivo' : 'Origem'}</label><div class="ct"><input type="text" id="${f.id}-path" placeholder="${pdf ? 'Escolha um PDF' : 'PDF ou pasta de PDFs'}"><button class="b" data-pick="${f.id}-path" data-kind="${pdf ? 'split' : 'word'}" type="button">Escolher…</button></div></div>
+  ${pdf ? '' : '<div class="note">Escolha uma pasta para processar todos os PDFs dela de uma vez.</div>'}</div>
+  <div class="group">${f.campos.map(c => campoHtml(f, c)).join('')}<div class="fr"><label class="lb" for="${f.id}-out">Salvar em<small>Opcional</small></label><div class="ct"><input type="text" id="${f.id}-out" placeholder="Padrão: Papelada_saida ao lado"></div></div></div>
+  ${f.grade ? `<div class="group" id="${f.id}-pages-box" hidden><div class="pgs-head"><span id="${f.id}-pages-t"></span><span id="${f.id}-pages-h"></span></div><div class="pgs" id="${f.id}-pages"></div></div>` : ''}
+  <div class="actions"><button class="b p" id="${f.id}-go" type="button">${f.botao}</button></div>`;
+  document.querySelector('.page').insertBefore(sec, $('result'));
+
+  const segs = {};
+  sec.querySelectorAll('.seg[data-campo]').forEach(el => { segs[el.dataset.campo] = Seg(el, aplicarCondicoes); });
+  const valor = c => {
+    if (c.tipo === 'seg') return segs[c.id]();
+    const el = $(`${f.id}-${c.id}`);
+    if (c.tipo === 'check') return el.checked;
+    if (c.tipo === 'num') return el.value === '' ? null : Number(el.value);
+    return el.value;
+  };
+  const valores = () => Object.fromEntries(f.campos.filter(c => c.tipo !== 'nota').map(c => [c.id, valor(c)]));
+  function aplicarCondicoes() {
+    const v = valores();
+    f.campos.forEach(c => { if (c.se) sec.querySelectorAll(`[data-campo="${c.id}"]`).forEach(el => { if (!el.classList.contains('seg')) el.hidden = v[c.se[0]] !== c.se[1]; }); });
+  }
+  sec.addEventListener('input', aplicarCondicoes); aplicarCondicoes();
+  if (f.grade) GradePaginas({path: `${f.id}-path`, box: `${f.id}-pages-box`, titulo: `${f.id}-pages-t`, dica: `${f.id}-pages-h`, grade: `${f.id}-pages`,
+    val: `${f.id}-paginas`, selecionavel: () => true, dicaSel: 'Clique nas páginas para escolher (sem seleção = todas)', cls: 'sel'});
+  $(`${f.id}-go`).onclick = e => run(e.target, f.ocupado || 'Processando...', async () => {
+    const v = valores(), erro = f.validar && f.validar(v);
+    if (erro) throw new Error(erro);
+    f.campos.filter(c => c.soUI).forEach(c => delete v[c.id]);
+    const r = await api('/api/tool', {tool: f.id, path: $(`${f.id}-path`).value, output: $(`${f.id}-out`).value, options: v});
+    return resultadoFerramenta(r);
+  });
+}
+function resultadoFerramenta(r) {
+  if (r.resultados.length === 1 && r.ok === 1) {
+    const x = r.resultados[0];
+    return `<span class="ok">Pronto</span>${x.info ? ` · ${esc(x.info)}` : ''}<p>${link(x.output)}</p><p class="warn">${esc(r.output)}</p>`;
+  }
+  return `<span class="ok">${r.ok} de ${r.total} concluído(s)</span><ul>${r.resultados.map(x => x.status === 'ok'
+    ? `<li>${esc(x.nome)}: ${x.info ? esc(x.info) + ' — ' : ''}${link(x.output)}</li>` : `<li>${esc(x.nome)}: <span style="color:var(--red)">${esc(x.erro)}</span></li>`).join('')}</ul><p class="warn">Salvos em ${esc(r.output)}</p>`;
+}
+const PAG = {tipo: 'texto', id: 'paginas', rotulo: 'Páginas', dica: 'Vazio = todas', placeholder: 'Ex.: 1-3, 5 (ou clique nas miniaturas)'};
+const FERRAMENTAS = [
+  {id: 'rotate', titulo: 'Girar páginas', desc: 'Gire todas as páginas, ou só as que você escolher.', entrada: 'pdf-ou-pasta', botao: 'Girar', grade: true, ocupado: 'Girando...',
+    campos: [{tipo: 'seg', id: 'graus', rotulo: 'Girar', padrao: '90', opcoes: [['90', '90° horário'], ['180', '180°'], ['270', '90° anti-horário']]}, PAG]},
+  {id: 'compress', titulo: 'Comprimir', desc: 'Reduza o tamanho do PDF mantendo a legibilidade. Nunca devolve um arquivo maior que o original.', entrada: 'pdf-ou-pasta', botao: 'Comprimir', ocupado: 'Comprimindo...',
+    campos: [{tipo: 'seg', id: 'nivel', rotulo: 'Nível', padrao: 'recomendada', opcoes: [['baixa', 'Menor perda'], ['recomendada', 'Recomendada'], ['extrema', 'Máxima']]},
+      {tipo: 'nota', texto: 'Menor perda só limpa o arquivo. Recomendada reduz imagens para cerca de 150 dpi. Máxima usa 96 dpi e qualidade menor.'}]},
+  {id: 'repair', titulo: 'Reparar', desc: 'Tente recuperar PDFs que não abrem ou abrem com erro, gravando uma cópia íntegra.', entrada: 'pdf-ou-pasta', botao: 'Reparar', ocupado: 'Reparando...', campos: []},
+  {id: 'tojpg', titulo: 'PDF para imagens', desc: 'Converta cada página em JPG ou PNG, ou extraia as imagens que estão dentro do PDF.', entrada: 'pdf-ou-pasta', botao: 'Converter', grade: true, ocupado: 'Convertendo...',
+    campos: [{tipo: 'seg', id: 'modo', rotulo: 'O que fazer', padrao: 'paginas', opcoes: [['paginas', 'Converter páginas'], ['imagens', 'Extrair imagens']]},
+      {tipo: 'seg', id: 'formato', rotulo: 'Formato', padrao: 'jpg', se: ['modo', 'paginas'], opcoes: [['jpg', 'JPG'], ['png', 'PNG']]},
+      {tipo: 'num', id: 'dpi', rotulo: 'Resolução', padrao: 150, min: 36, max: 600, unidade: 'dpi', se: ['modo', 'paginas']}, PAG]},
+  {id: 'tomd', titulo: 'PDF para Markdown', desc: 'Extraia o texto do PDF em Markdown, com títulos, listas e tabelas simples. PDFs só de imagem precisam de OCR.', entrada: 'pdf-ou-pasta', botao: 'Converter', ocupado: 'Convertendo...', campos: []},
+  {id: 'number', titulo: 'Números de página', desc: 'Acrescente a numeração das páginas, no formato e na posição que quiser.', entrada: 'pdf-ou-pasta', botao: 'Numerar', ocupado: 'Numerando...',
+    campos: [{tipo: 'select', id: 'posicao', rotulo: 'Posição', padrao: 'inferior-centro', opcoes: [['inferior-centro', 'Embaixo, centro'], ['inferior-direita', 'Embaixo, direita'], ['inferior-esquerda', 'Embaixo, esquerda'], ['superior-centro', 'No alto, centro'], ['superior-direita', 'No alto, direita'], ['superior-esquerda', 'No alto, esquerda']]},
+      {tipo: 'select', id: 'formato', rotulo: 'Formato', padrao: 'Página {n} de {total}', opcoes: [['{n}', '1'], ['Página {n}', 'Página 1'], ['Página {n} de {total}', 'Página 1 de 10'], ['{n}/{total}', '1/10'], ['- {n} -', '- 1 -']]},
+      {tipo: 'num', id: 'inicio', rotulo: 'Número inicial', padrao: 1, min: 0, max: 99999},
+      {tipo: 'num', id: 'de', rotulo: 'Começar na página', dica: 'As anteriores ficam sem número', padrao: 1, min: 1, max: 99999},
+      {tipo: 'num', id: 'tamanho', rotulo: 'Tamanho', padrao: 10, min: 6, max: 72, unidade: 'pt'},
+      {tipo: 'num', id: 'margem', rotulo: 'Margem', padrao: 8, min: 2, max: 100, unidade: 'mm'},
+      {tipo: 'cor', id: 'cor', rotulo: 'Cor', padrao: '#000000'}]},
+  {id: 'watermark', titulo: 'Marca d\'água', desc: 'Escreva um texto ou coloque uma imagem sobre (ou atrás) das páginas.', entrada: 'pdf-ou-pasta', botao: 'Aplicar marca d\'água', grade: true, ocupado: 'Aplicando...',
+    validar: v => (v.texto.trim() || v.imagem.trim()) ? '' : 'Informe um texto ou uma imagem.',
+    campos: [{tipo: 'texto', id: 'texto', rotulo: 'Texto', placeholder: 'Ex.: CONFIDENCIAL'},
+      {tipo: 'arquivo', id: 'imagem', rotulo: 'Imagem', dica: 'Opcional, no lugar do texto', placeholder: 'Escolha uma imagem'},
+      {tipo: 'seg', id: 'estilo', rotulo: 'Estilo', padrao: 'diagonal', opcoes: [['diagonal', 'Diagonal'], ['horizontal', 'Horizontal']]},
+      {tipo: 'seg', id: 'posicao', rotulo: 'Posição', padrao: 'centro', opcoes: [['superior', 'No alto'], ['centro', 'Centro'], ['inferior', 'Embaixo']]},
+      {tipo: 'num', id: 'opacidade', rotulo: 'Opacidade', padrao: 30, min: 5, max: 100, unidade: '%'},
+      {tipo: 'num', id: 'tamanho', rotulo: 'Tamanho do texto', dica: '0 = automático', padrao: 0, min: 0, max: 400, unidade: 'pt'},
+      {tipo: 'num', id: 'escala', rotulo: 'Largura da imagem', padrao: 50, min: 5, max: 100, unidade: '% da página'},
+      {tipo: 'cor', id: 'cor', rotulo: 'Cor do texto', padrao: '#808080'},
+      {tipo: 'seg', id: 'camada', rotulo: 'Camada', padrao: 'sobre', opcoes: [['sobre', 'Sobre o conteúdo'], ['atras', 'Atrás do conteúdo']]}, PAG]},
+  {id: 'crop', titulo: 'Recortar', desc: 'Tire as bordas em branco automaticamente ou defina quanto cortar de cada lado.', entrada: 'pdf-ou-pasta', botao: 'Recortar', grade: true, ocupado: 'Recortando...',
+    campos: [{tipo: 'seg', id: 'modo', rotulo: 'Modo', padrao: 'auto', opcoes: [['auto', 'Bordas em branco'], ['margens', 'Definir margens']]},
+      {tipo: 'num', id: 'folga', rotulo: 'Folga', dica: 'Margem mantida ao redor do conteúdo', padrao: 5, min: 0, max: 50, unidade: 'mm', se: ['modo', 'auto']},
+      {tipo: 'num', id: 'cima', rotulo: 'Cortar em cima', padrao: 0, min: 0, unidade: 'mm', se: ['modo', 'margens']},
+      {tipo: 'num', id: 'baixo', rotulo: 'Cortar embaixo', padrao: 0, min: 0, unidade: 'mm', se: ['modo', 'margens']},
+      {tipo: 'num', id: 'esquerda', rotulo: 'Cortar à esquerda', padrao: 0, min: 0, unidade: 'mm', se: ['modo', 'margens']},
+      {tipo: 'num', id: 'direita', rotulo: 'Cortar à direita', padrao: 0, min: 0, unidade: 'mm', se: ['modo', 'margens']}, PAG]},
+  {id: 'protect', titulo: 'Proteger', desc: 'Peça uma senha para abrir o PDF (criptografia AES-256) e, se quiser, trave impressão, cópia ou edição.', entrada: 'pdf-ou-pasta', botao: 'Proteger', ocupado: 'Protegendo...',
+    validar: v => v.senha.length < 4 ? 'Use uma senha com pelo menos 4 caracteres.' : v.senha !== v.confirmar ? 'As senhas não conferem.' : '',
+    campos: [{tipo: 'senha', id: 'senha', rotulo: 'Senha', placeholder: 'Mínimo de 4 caracteres'},
+      {tipo: 'senha', id: 'confirmar', rotulo: 'Repetir senha', soUI: true},
+      {tipo: 'check', id: 'sem_imprimir', rotulo: 'Bloquear impressão'}, {tipo: 'check', id: 'sem_copiar', rotulo: 'Bloquear cópia de texto'}, {tipo: 'check', id: 'sem_editar', rotulo: 'Bloquear edição'},
+      {tipo: 'nota', texto: 'Guarde a senha: sem ela não há como abrir o arquivo.'}]},
+  {id: 'unlock', titulo: 'Desbloquear', desc: 'Remova a senha e as restrições de um PDF. Se ele pede senha para abrir, você precisa informá-la.', entrada: 'pdf-ou-pasta', botao: 'Desbloquear', ocupado: 'Desbloqueando...',
+    campos: [{tipo: 'senha', id: 'senha', rotulo: 'Senha', dica: 'Deixe vazio se ele só tem restrições'}]},
+];
+FERRAMENTAS.forEach(montarFerramenta);
 
 document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
   document.querySelectorAll('nav button').forEach(x => x.setAttribute('aria-selected', x === b));
@@ -490,7 +651,9 @@ const ICON = {
   eye: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.3"/></svg>',
   left: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4l-6 6 6 6"/></svg>',
   right: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4l6 6-6 6"/></svg>',
-  x: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>'};
+  x: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>',
+  rotl: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10a6 6 0 1 0 2-4.5"/><path d="M4 3v4h4"/></svg>',
+  rotr: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-2-4.5"/><path d="M16 3v4h-4"/></svg>'};
 const base = n => n.split('/').pop();
 const thumb = (id, p, w) => `/thumb?id=${id}&p=${p}&w=${w}`;
 const semImg = 'this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'noimg\',textContent:\'PDF\'}))';
@@ -531,19 +694,23 @@ function Ordenador(raiz, op = {}) {
   const rotulo = it => it.size ? `${it.size[0]}×${it.size[1]}` : `${it.pages ?? '?'} p.`;
   function desenhar() {
     const n = st.lista.length, pags = st.lista.reduce((s, i) => s + (i.pages || 0), 0);
-    q('.ord-sum').textContent = op.imagens ? `${n} imagem(ns)` : `${n} arquivo(s) · ${pags} página(s)`;
-    lista.innerHTML = st.lista.map((it, i) => `<li draggable="true" data-i="${i}"><div class="th">${img(it.id, 0, 320, st.thumbs)}<span class="ix">${i + 1}</span>
-      <div class="ov"><button class="ib" data-a="view" title="Visualizar" aria-label="Visualizar ${esc(base(it.name))}">${ICON.eye}</button><button class="ib" data-a="up" title="Mover para trás" aria-label="Mover para trás" ${i === 0 ? 'disabled' : ''}>${ICON.left}</button><button class="ib" data-a="down" title="Mover para frente" aria-label="Mover para frente" ${i === n - 1 ? 'disabled' : ''}>${ICON.right}</button><button class="ib" data-a="rm" title="Não incluir" aria-label="Não incluir">${ICON.x}</button></div></div>
+    q('.ord-sum').textContent = op.paginas ? `${n} de ${st.original.length} página(s)` : op.imagens ? `${n} imagem(ns)` : `${n} arquivo(s) · ${pags} página(s)`;
+    const girada = (it, html) => { const r = it.rot || 0; return r ? html.replace('<img ', `<img style="transform:rotate(${r}deg)${r % 180 ? ' scale(.75)' : ''}" `) : html; };
+    const giro = op.paginas ? (i) => `<button class="ib" data-a="rotl" title="Girar à esquerda" aria-label="Girar à esquerda">${ICON.rotl}</button><button class="ib" data-a="rotr" title="Girar à direita" aria-label="Girar à direita">${ICON.rotr}</button>` : () => '';
+    const olho = (it) => op.paginas ? '' : `<button class="ib" data-a="view" title="Visualizar" aria-label="Visualizar ${esc(base(it.name))}">${ICON.eye}</button>`;
+    lista.innerHTML = st.lista.map((it, i) => `<li draggable="true" data-i="${i}"><div class="th">${girada(it, img(it.id, it.p || 0, 320, st.thumbs))}<span class="ix">${op.paginas ? it.p + 1 : i + 1}</span>
+      <div class="ov">${olho(it)}<button class="ib" data-a="up" title="Mover para trás" aria-label="Mover para trás" ${i === 0 ? 'disabled' : ''}>${ICON.left}</button><button class="ib" data-a="down" title="Mover para frente" aria-label="Mover para frente" ${i === n - 1 ? 'disabled' : ''}>${ICON.right}</button>${giro(i)}<button class="ib" data-a="rm" title="Não incluir" aria-label="Não incluir">${ICON.x}</button></div></div>
       <div class="nm" title="${esc(it.name)}">${esc(base(it.name))}</div><div class="pg">${rotulo(it)}</div></li>`).join('')
       || '<li style="grid-column:1/-1;cursor:default"><span class="nm">Nada selecionado.</span></li>';
     const o = q('.ord-out'); o.hidden = !st.fora.length;
     o.innerHTML = st.fora.length ? (op.fora || 'Fora') + ': ' + st.fora.map((x, i) => `<button data-r="${i}" title="Incluir de novo">+ ${esc(base(x.name))}</button>`).join('') : '';
   }
-  const abrir = it => abrirVisor(it.id, base(it.name), it.pages || 1);
+  const abrir = it => abrirVisor(it.id, base(it.name), it.n || it.pages || 1, it.p || 0);
   lista.onclick = e => {
     const b = e.target.closest('.ib'); if (!b) return;
     const i = +b.closest('li').dataset.i;
-    ({view: () => abrir(st.lista[i]), up: () => mover(i, i - 1), down: () => mover(i, i + 1),
+    const gira = d => { const it = st.lista[i]; it.rot = (((it.rot || 0) + d) % 360 + 360) % 360; desenhar(); };
+    ({view: () => abrir(st.lista[i]), up: () => mover(i, i - 1), down: () => mover(i, i + 1), rotl: () => gira(-90), rotr: () => gira(90),
       rm: () => { st.fora.push(...st.lista.splice(i, 1)); desenhar(); }})[b.dataset.a]();
   };
   lista.ondblclick = e => { const li = e.target.closest('li'); if (li && !e.target.closest('.ib') && st.lista[+li.dataset.i]) abrir(st.lista[+li.dataset.i]); };
@@ -552,7 +719,9 @@ function Ordenador(raiz, op = {}) {
     const b = e.target.closest('[data-sort]'); if (!b || !st) return;
     const todos = [...st.lista];
     st.lista = {natural: () => st.original.filter(o => todos.some(t => t.name === o.name)),
-      az: () => todos.sort(nat), za: () => todos.sort(nat).reverse(), rev: () => todos.reverse()}[b.dataset.sort]();
+      az: () => todos.sort(nat), za: () => todos.sort(nat).reverse(), rev: () => todos.reverse(),
+      rotall: () => { todos.forEach(o => { o.rot = ((o.rot || 0) + 90) % 360; }); return todos; },
+      reset: () => { st.fora = []; st.original.forEach(o => { o.rot = 0; }); return [...st.original]; }}[b.dataset.sort]();
     desenhar();
   };
   lista.ondragstart = e => { const li = e.target.closest('li'); if (!li) return; arrasto = +li.dataset.i; li.classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(arrasto)); };
@@ -563,6 +732,7 @@ function Ordenador(raiz, op = {}) {
     mostrar(r, path) { st = {path, original: r.items, lista: [...r.items], fora: [], thumbs: r.thumbs}; raiz.hidden = false; desenhar(); },
     invalidar() { st = null; raiz.hidden = true; },
     ordem(path) { return st && st.path === path ? st.lista.map(x => x.name) : null; },
+    itens() { return st ? st.lista : null; },
   };
 }
 
@@ -656,6 +826,26 @@ GradePaginas({path: 'r-path', box: 'r-pages-box', titulo: 'r-pages-t', dica: 'r-
 $('r-go').onclick = e => run(e.target, 'Removendo...', async () => {
   const r = await api('/api/remove-pages', {path: $('r-path').value, value: $('r-val').value, output: $('r-out').value});
   return `<span class="ok">${r.removed} página(s) removida(s). Sobraram ${r.remaining} de ${r.total}.</span><p>${link(r.output)}</p><p class="warn">${esc(r.output)}</p>`;
+});
+
+// ---- organizar paginas ----
+const ordO = Ordenador($('o-ord'), {fora: 'Removidas', paginas: true});
+let tOrg;
+async function carregarOrg() {
+  const v = $('o-path').value.trim();
+  if (!/\.pdf$/i.test(v)) return ordO.invalidar();
+  try {
+    const r = await api('/api/preview-file', {path: v});
+    if (r.pages > 500) { ordO.invalidar(); return show('Este PDF tem mais de 500 páginas. Use Separar ou Remover páginas para PDFs muito grandes.', true); }
+    ordO.mostrar({items: Array.from({length: r.pages}, (_, i) => ({name: `Página ${i + 1}`, id: r.id, p: i, n: r.pages, rot: 0, pages: 1})), thumbs: r.thumbs}, v);
+  } catch (e) { ordO.invalidar(); }
+}
+$('o-path').addEventListener('input', () => { clearTimeout(tOrg); tOrg = setTimeout(carregarOrg, 350); });
+$('o-go').onclick = e => run(e.target, 'Salvando...', async () => {
+  const itens = ordO.itens();
+  if (!itens) throw new Error('Escolha um PDF primeiro.');
+  const r = await api('/api/tool', {tool: 'organize', path: $('o-path').value, output: $('o-out').value, options: {pages: itens.map(x => ({p: x.p, rot: x.rot || 0}))}});
+  return resultadoFerramenta(r);
 });
 
 // ---- imagens para PDF ----

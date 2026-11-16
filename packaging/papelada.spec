@@ -10,7 +10,7 @@ RAIZ = AQUI.parent
 
 datas = [(str(RAIZ / "papelada" / "static"), "papelada/static")]
 binaries, hidden = [], []
-for pacote in ("pdf2docx", "fitz", "pymupdf", "webview"):
+for pacote in ("pdf2docx", "fitz", "pymupdf", "pymupdf4llm", "pymupdf_layout", "webview", "cryptography"):
     try:
         d, b, h = collect_all(pacote)
     except Exception:

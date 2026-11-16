@@ -32,6 +32,12 @@ O Papelada roda no seu computador, sem limites, e foi pensado para **muitos arqu
 | **Remover páginas** | Escolha as páginas clicando nas miniaturas (ou digite `2, 5-7`) e salve uma cópia sem elas. O original não é alterado. |
 | **Imagens para PDF** | Fotos, digitalizações e capturas de tela (JPG, PNG, TIFF, WebP…) de uma pasta, `.zip` ou arquivo viram PDF, na ordem que você escolher. Página do tamanho da imagem, A4 ou Carta, orientação automática, margem e opção de um PDF por imagem. Corrige fotos giradas pelo celular (EXIF). |
 | **PDF para Word** | Converte um PDF, ou todos os PDFs de uma pasta, em `.docx` editável. |
+| **Organizar páginas** | Grade de miniaturas: arraste para reordenar, gire cada página ou todas e apague as que não quer. |
+| **Girar, recortar, numerar e marca d'água** | Gire todas as páginas ou só as escolhidas; recorte bordas em branco (automático) ou margens em mm; numere com posição e formato; aplique marca d'água de texto ou imagem. |
+| **Comprimir e reparar** | Três níveis de compressão (nunca devolve um arquivo maior que o original) e recuperação de PDFs danificados. |
+| **PDF para imagens e Markdown** | Páginas em JPG/PNG (com a resolução que quiser), extração das imagens embutidas e texto em Markdown. |
+| **Proteger e desbloquear** | Senha para abrir (AES-256) com bloqueio opcional de impressão, cópia e edição; remoção de senha e restrições. |
+| **Pasta inteira de uma vez** | Todas essas ferramentas aceitam um PDF ou uma pasta de PDFs. |
 | **Visualizador** | Abre qualquer PDF em tela grande, página a página. |
 | **Visual nativo** | Interface no padrão de design da Apple, com tema claro e escuro automáticos e atalhos de teclado (⌘/Ctrl+1 a 5, O e Enter). |
 
@@ -75,39 +81,39 @@ Dados do iLovePDF conferidos na página pública de planos em 16/11/2026; eles p
 | Organizar | Dividir de forma inteligente (IA) | — | até 200 páginas | ❌ |
 | Organizar | Remover páginas | ✔ | ✔ | ✅ por miniatura ou intervalo |
 | Organizar | Extrair páginas | ✔ | ✔ | ✅ |
-| Organizar | Organizar páginas (reordenar, girar, apagar) | até 5 arquivos | até 20 | ❌ |
+| Organizar | Organizar páginas (reordenar, girar, apagar) | até 5 arquivos | até 20 | ✅ grade com arrastar, girar e apagar |
 | Organizar | Digitalizar e transformar em PDF | só no app móvel | ✔ | ❌ |
-| Otimizar | Comprimir PDF | 2 arquivos, 200 MB | 10 arquivos, 4 GB | ❌ |
-| Otimizar | Reparar PDF | ✔ | ✔ | ❌ |
+| Otimizar | Comprimir PDF | 2 arquivos, 200 MB | 10 arquivos, 4 GB | ✅ três níveis |
+| Otimizar | Reparar PDF | ✔ | ✔ | ✅ |
 | Otimizar | OCR (reconhecimento de texto) | básico, 15 MB | avançado | ❌ |
 | Converter para PDF | JPG / imagens para PDF | até 20 imagens | até 500 | ✅ sem limites, com tamanho, orientação e margem |
 | Converter para PDF | Word para PDF | 15 MB | 4 GB | ❌ |
 | Converter para PDF | PowerPoint para PDF | 15 MB | 4 GB | ❌ |
 | Converter para PDF | Excel para PDF | 15 MB | 4 GB | ❌ |
 | Converter para PDF | HTML / página web para PDF | ✔ | ✔ | ❌ |
-| Converter de PDF | PDF para JPG | 2 arquivos, 25 MB | 10 arquivos | ❌ |
+| Converter de PDF | PDF para JPG | 2 arquivos, 25 MB | 10 arquivos | ✅ páginas ou imagens embutidas |
 | Converter de PDF | **PDF para Word** | 1 arquivo, 15 MB | 10 arquivos, 4 GB | ✅ sem OCR |
 | Converter de PDF | PDF para PowerPoint | 15 MB | 4 GB | ❌ |
 | Converter de PDF | PDF para Excel | 15 MB | 4 GB | ❌ |
 | Converter de PDF | PDF para Word/PowerPoint/Excel com OCR | — | ✔ | ❌ |
 | Converter de PDF | PDF para PDF/A | — | ✔ | ❌ |
-| Editar | Girar PDF | ✔ | ✔ | ❌ |
-| Editar | Números de página | ✔ | ✔ | ❌ |
-| Editar | Marca d'água | ✔ | ✔ | ❌ |
-| Editar | Recortar PDF | ✔ | ✔ | ❌ |
+| Editar | Girar PDF | ✔ | ✔ | ✅ todas ou selecionadas |
+| Editar | Números de página | ✔ | ✔ | ✅ posição e formato |
+| Editar | Marca d'água | ✔ | ✔ | ✅ texto ou imagem |
+| Editar | Recortar PDF | ✔ | ✔ | ✅ bordas automáticas ou margens |
 | Editar | Editar PDF (texto, imagens, formas) | ✔ | ✔ | ❌ |
 | Editar | Formulários PDF | ✔ | ✔ | ❌ |
-| Segurança | Desbloquear PDF | ✔ | ✔ | ❌ (hoje PDFs com senha são pulados, com aviso) |
-| Segurança | Proteger PDF com senha | ✔ | ✔ | ❌ |
+| Segurança | Desbloquear PDF | ✔ | ✔ | ✅ |
+| Segurança | Proteger PDF com senha | ✔ | ✔ | ✅ AES-256 e restrições |
 | Segurança | Assinar PDF | ✔ | ✔ + assinatura avançada | ❌ |
 | Segurança | Ocultar informações (redigir) | ✔ | ✔ + modo inteligente por IA | ❌ |
 | Segurança | Comparar PDFs | ✔ | ✔ | ❌ |
 | Inteligência | Resumir com IA | — | ✔ | ❌ |
 | Inteligência | Traduzir PDF | — | ✔ | ❌ |
-| Inteligência | PDF para Markdown | ✔ | ✔ | ❌ |
+| Inteligência | PDF para Markdown | ✔ | ✔ | ✅ |
 | Automação | Fluxos de trabalho (encadear ferramentas) | — | ✔ | ❌ |
 
-**Placar das 35 ferramentas:** 6 prontas · 29 pendentes.
+**Placar das 36 ferramentas:** 17 prontas · 19 pendentes.
 
 ### Plataforma e planos
 
@@ -131,17 +137,18 @@ A ordem abaixo prioriza o que é útil no dia a dia e viável sem serviços exte
 
 **Fase 1: edição e organização de páginas** (PyMuPDF / pypdf)
 - [x] Remover páginas (com seleção por miniatura)
-- [ ] Organizar páginas: reordenar, girar e apagar na grade
-- [ ] Girar PDF
-- [ ] Números de página
-- [ ] Marca d'água (texto e imagem)
-- [ ] Recortar PDF
-- [ ] Proteger e desbloquear com senha (e pedir a senha ao juntar)
+- [x] Organizar páginas: reordenar, girar e apagar na grade
+- [x] Girar PDF
+- [x] Números de página
+- [x] Marca d'água (texto e imagem)
+- [x] Recortar PDF
+- [x] Proteger e desbloquear com senha
+- [ ] Pedir a senha de PDFs protegidos ao juntar e separar
 - [x] Imagens para PDF (tamanho de página, orientação, margem e ordem)
-- [ ] PDF para JPG
-- [ ] Comprimir PDF
-- [ ] Reparar PDF
-- [ ] PDF para Markdown
+- [x] PDF para JPG
+- [x] Comprimir PDF
+- [x] Reparar PDF
+- [x] PDF para Markdown
 
 **Fase 2: conversão e OCR**
 - [ ] OCR (Tesseract / OCRmyPDF), inclusive PDF para Word com OCR
