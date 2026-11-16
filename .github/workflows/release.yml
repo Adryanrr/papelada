@@ -1,0 +1,60 @@
+name: Release
+# Crie um release com: git tag v0.1.0 && git push origin v0.1.0
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arquivo: Papelada-windows-x64.exe
+          - os: ubuntu-22.04   # glibc mais antiga = roda em mais distribuicoes
+            arquivo: Papelada-linux-x64
+          - os: macos-14
+            arquivo: Papelada-macos-arm64.dmg
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q
+      - run: pyinstaller --noconfirm --clean packaging/papelada.spec
+      - name: Nomear artefato (Windows)
+        if: runner.os == 'Windows'
+        run: Move-Item dist/Papelada.exe dist/${{ matrix.arquivo }}
+      - name: Nomear artefato (Linux)
+        if: runner.os == 'Linux'
+        run: mv dist/Papelada dist/${{ matrix.arquivo }} && chmod +x dist/${{ matrix.arquivo }}
+      - name: Nomear artefato (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          mkdir dist/dmg && cp -R dist/Papelada.app dist/dmg/ && ln -s /Applications dist/dmg/Applications
+          hdiutil create -volname Papelada -srcfolder dist/dmg -ov -format UDZO dist/${{ matrix.arquivo }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.arquivo }}
+          path: dist/${{ matrix.arquivo }}
+
+  publicar:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artefatos
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: artefatos/*
+          generate_release_notes: true

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "papelada"
+version = "0.1.0"
+description = "Junte, separe e converta documentos PDF em massa. Interface local no navegador."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+  "pypdf>=4.0", "Pillow>=10.0", "pdf2docx>=0.5.8",
+  "pywebview>=5.0; sys_platform != 'linux'",  # janela propria no Windows/macOS; no Linux abre o navegador
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pyinstaller>=6"]
+
+[project.scripts]
+papelada = "papelada.server:main"
+
+[tool.setuptools]
+packages = ["papelada"]
+
+[tool.setuptools.package-data]
+papelada = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

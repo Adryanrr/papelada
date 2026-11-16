@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "mode": "complete",
+  "identity": "new",
+  "package": "papelada-icon-v1.zip",
+  "concepts": [
+    {"id": "a", "file": "concepts/a-pilha.svg", "difference": "pilha de tres folhas em leque"},
+    {"id": "b", "file": "concepts/b-mascote.svg", "difference": "folha como mascote com rosto"},
+    {"id": "c", "file": "concepts/c-corte.svg", "difference": "folha cortada na diagonal por um fio ambar"}
+  ],
+  "assets": [
+    {"path": "master/icon.svg", "roles": ["master", "primary"]},
+    {"path": "exports/app-icon-1024.png", "roles": ["primary"], "size": [1024, 1024]},
+    {"path": "exports/app-icon-512.png", "roles": ["primary"], "size": [512, 512]},
+    {"path": "variants/flat.svg", "roles": ["flat"]},
+    {"path": "variants/light.svg", "roles": ["light"]},
+    {"path": "variants/light-512.png", "roles": ["light"], "size": [512, 512]},
+    {"path": "variants/dark.svg", "roles": ["dark"]},
+    {"path": "variants/dark-512.png", "roles": ["dark"], "size": [512, 512]},
+    {"path": "variants/monochrome.svg", "roles": ["monochrome"]},
+    {"path": "exports/favicon.svg", "roles": ["small"]},
+    {"path": "exports/favicon-16.png", "roles": ["small"], "size": [16, 16]},
+    {"path": "exports/favicon-32.png", "roles": ["small"], "size": [32, 32]},
+    {"path": "concepts/comparison.png", "roles": ["comparison"]},
+    {"path": "review/preview.png", "roles": ["preview"]},
+    {"path": "review/preview.html", "roles": ["preview-html"]},
+    {"path": "icon-spec.json", "roles": ["spec"]},
+    {"path": "USO.md", "roles": ["usage"]},
+    {"path": "exports/icon.ico", "roles": ["windows-ico"]},
+    {"path": "exports/icon.icns", "roles": ["macos-icns"]}
+  ],
+  "visualReview": {"status": "passed", "files": ["concepts/comparison.png", "review/preview.png"], "sizes": [16, 32, 64, 160, 360], "notes": ["fundos claro, escuro e quadriculado", "mono so em fundo claro por ser uma tinta escura"]}
+}

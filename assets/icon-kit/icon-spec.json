@@ -1,0 +1,36 @@
+{
+  "deliveryMode": "complete",
+  "product": {"name": "Papelada", "purpose": "juntar, separar e converter documentos PDF em massa, localmente", "audience": "pessoas e equipes que lidam com muita documentacao", "personality": ["pratico", "acolhedor", "organizado"]},
+  "role": "app-icon",
+  "evidence": [{"path": "papelada/static/index.html", "tokens": ["--brand #2b3a4a", "--accent #f59e0b", "--bg #f7f6f2"]}],
+  "assumptions": ["destinos: Windows (.ico), Linux (.png) e macOS (.icns) alem de favicon web", "paleta nova, definida junto com a interface"],
+  "concept": {"metaphor": "pilha de folhas em leque com dobra ambar", "why": "papelada = muitos documentos; a pilha comunica juntar/organizar e continua legivel pequena", "family": "D (simbolo utilitario com profundidade curta)"},
+  "concepts": [
+    {"id": "a", "file": "concepts/a-pilha.svg", "difference": "pilha de tres folhas em leque (recomendado)"},
+    {"id": "b", "file": "concepts/b-mascote.svg", "difference": "folha como mascote com rosto"},
+    {"id": "c", "file": "concepts/c-corte.svg", "difference": "folha cortada na diagonal por um fio ambar"}
+  ],
+  "recommendation": "A: leitura imediata, silhueta unica e boa reducao; B e muito simpatico mas parece emoji; C e mais abstrato e perde sentido de pilha.",
+  "referenceObservations": [
+    {"source": "style-atlas familia D e examples/lume-preview.png", "use": "base de cor dominante em gradiente suave, simbolo claro com sombra curta, tile arredondado so na apresentacao", "avoid": "olhos/rosto e brilho de vidro"}
+  ],
+  "signature": "tres folhas inclinadas com a quina superior direita dobrada em ambar; sobrevive na monocromia como recorte da dobra e na versao pequena como duas folhas + dobra",
+  "palette": {
+    "base": {"value": "#FFFFFF -> #E9E6DC", "source": "fundo branco suave; --bg da interface"},
+    "ink": {"value": "#2B3A4A", "source": "--brand da interface (azul-ardosia)"},
+    "accent": {"value": "#F59E0B", "source": "--accent da interface"}
+  },
+  "styleLock": {
+    "canvas": [1024, 1024],
+    "geometry": "folhas 380x480 com cantos 38 e quina cortada; leque -13/-5/+5 graus; simbolo ~65% da largura",
+    "presentationRadiusRatio": 0.23,
+    "perspective": "frontal",
+    "material": "papel fosco",
+    "light": "superior esquerda no fundo; sombra curta azul-ardosia sob as folhas",
+    "detailBudget": "tres folhas, dobra e tres linhas de texto",
+    "smallVariant": "tile ardosia (nao branco, para aparecer em abas claras), duas folhas, sem sombras, linhas grossas, simbolo 28% maior"
+  },
+  "targets": ["windows", "linux", "macos", "web"],
+  "variants": ["primary", "flat", "light", "dark", "monochrome", "small"],
+  "validation": {"structure": "see delivery.json", "visual": "passed", "nativeSizes": [16, 32, 48, 256], "notes": ["Chrome headless; ICO com camadas 16/32/48 nativas do favicon e 256 do principal; ICNS via iconutil", "mono usa uma tinta escura, so serve sobre fundo claro"]}
+}
