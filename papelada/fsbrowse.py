@@ -7,6 +7,7 @@ import string
 from pathlib import Path
 
 from .archive import eh_compactado
+from .images import eh_imagem
 
 
 def resolver(valor: str | None) -> Path:
@@ -43,6 +44,7 @@ def listar(pasta: Path) -> dict:
         "drives": drives,
         "dirs": [{"name": i.name, "path": str(i)} for i in visiveis if i.is_dir()],
         "archives": [{"name": i.name, "path": str(i)} for i in visiveis if i.is_file() and eh_compactado(i)],
+        "images": [{"name": i.name, "path": str(i)} for i in visiveis if i.is_file() and eh_imagem(i)],
         "pdfs": [{"name": i.name, "path": str(i)} for i in visiveis
                  if i.is_file() and i.suffix.lower() == ".pdf"],
     }

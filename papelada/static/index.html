@@ -112,20 +112,20 @@ input.sw:checked::after{transform:translateX(17px)}
 @keyframes s{to{transform:rotate(360deg)}}
 
 /* Revisar e ordenar */
-#ord{margin-bottom:16px;overflow:hidden}
-#ord-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;border-bottom:.5px solid var(--sep)}
-#ord-bar .b{height:24px;padding:0 10px;font-size:12px;box-shadow:none;background:var(--fill)}
-#ord-sum{margin-left:auto;font-size:12px;color:var(--label2);font-variant-numeric:tabular-nums}
-#ord-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px;max-height:520px;overflow:auto;margin:0;padding:12px;list-style:none}
-#ord-list li{display:flex;flex-direction:column;gap:5px;padding:7px;border-radius:12px;background:var(--fill2);border:1.5px solid transparent;cursor:grab;min-width:0;transition:background-color .12s ease,transform .18s var(--ease-out)}
-#ord-list li.over{border-color:var(--blue);background:var(--blue-soft)}
-#ord-list li.drag{opacity:.4}
+.ord{margin-bottom:16px;overflow:hidden}
+.ord-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;border-bottom:.5px solid var(--sep)}
+.ord-bar .b{height:24px;padding:0 10px;font-size:12px;box-shadow:none;background:var(--fill)}
+.ord-sum{margin-left:auto;font-size:12px;color:var(--label2);font-variant-numeric:tabular-nums}
+.ord-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px;max-height:520px;overflow:auto;margin:0;padding:12px;list-style:none}
+.ord-list li{display:flex;flex-direction:column;gap:5px;padding:7px;border-radius:12px;background:var(--fill2);border:1.5px solid transparent;cursor:grab;min-width:0;transition:background-color .12s ease,transform .18s var(--ease-out)}
+.ord-list li.over{border-color:var(--blue);background:var(--blue-soft)}
+.ord-list li.drag{opacity:.4}
 .th{position:relative;aspect-ratio:3/4;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.14),0 1px 3px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:center}
 .th img{width:100%;height:100%;object-fit:contain;display:block;-webkit-user-drag:none}
 .noimg{color:#8e8e93;font-weight:700;font-size:13px}
 .th .ix{position:absolute;left:6px;top:6px;width:auto;min-width:20px;height:20px;padding:0 6px;border-radius:999px;display:grid;place-items:center;background:rgba(0,0,0,.6);color:#fff;font-size:11px}
 .ov{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:4px;padding:18px 6px 6px;background:linear-gradient(transparent,rgba(0,0,0,.55));opacity:0;transition:opacity .15s ease}
-#ord-list li:hover .ov,#ord-list li:focus-within .ov{opacity:1}
+.ord-list li:hover .ov,.ord-list li:focus-within .ov{opacity:1}
 @media (hover:none){.ov{opacity:1}}
 .ov .ib{width:26px;height:26px;background:rgba(255,255,255,.94);color:#1c1c1e}
 .ov .ib:hover:not(:disabled){background:#fff;color:#000}
@@ -135,8 +135,8 @@ input.sw:checked::after{transform:translateX(17px)}
 .ib svg{width:15px;height:15px}
 .ib:active:not(:disabled){transform:scale(.92)}
 .ib:disabled{opacity:.3;cursor:default}
-#ord-out{padding:8px 10px;border-top:.5px solid var(--sep);font-size:12px;color:var(--label2)}
-#ord-out button{border:0;background:var(--fill);color:var(--label);font-size:12px;border-radius:999px;padding:2px 10px;margin:2px 4px 2px 0;cursor:pointer}
+.ord-out{padding:8px 10px;border-top:.5px solid var(--sep);font-size:12px;color:var(--label2)}
+.ord-out button{border:0;background:var(--fill);color:var(--label);font-size:12px;border-radius:999px;padding:2px 10px;margin:2px 4px 2px 0;cursor:pointer}
 
 /* Paginas do PDF (Separar) e visualizador */
 .pgs-head{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:.5px solid var(--sep);font-size:12px;color:var(--label2)}
@@ -161,6 +161,14 @@ input.sw:checked::after{transform:translateX(17px)}
 .vw-body{flex:1;overflow:auto;background:var(--fill);display:flex;justify-content:center;padding:18px}
 #v-img{display:block;max-width:100%;height:auto;align-self:flex-start;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.15),0 6px 24px rgba(0,0,0,.2);transition:opacity .15s ease}
 #v-img.ld{opacity:.35}
+
+.nav-h{padding:14px 10px 4px;font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--label2)}
+.pgc.del{border-color:var(--red);background:color-mix(in srgb,var(--red) 10%,transparent)}
+.pgc.del .th::after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.62) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23d70015' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M5 5l10 10M15 5L5 15'/%3E%3C/svg%3E") center/38% no-repeat}
+.pgc.del span.n{color:var(--red);font-weight:700}
+@media (prefers-color-scheme:dark){.pgc.del .th::after{background-color:rgba(0,0,0,.5)}}
+.fr .seg{flex:1}
+.fr.col .seg{width:100%}
 
 /* Seletor de pastas: folha (sheet) com barra lateral estilo Finder */
 dialog{width:min(720px,calc(100vw - 32px));padding:0;border:0;border-radius:14px;background:var(--card);color:var(--label);box-shadow:var(--sheet-shadow);overflow:hidden}
@@ -203,9 +211,13 @@ dialog::backdrop{background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(3px);ba
 <aside>
   <div class="brand"><img src="/static/icon.svg" alt=""><b>Papelada</b></div>
   <nav role="tablist" aria-label="Ferramentas">
+    <div class="nav-h">Organizar</div>
     <button role="tab" aria-selected="true" data-tab="merge" title="⌘1"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="3" width="10" height="12" rx="2"/><path d="M4 7v8a2 2 0 0 0 2 2h7"/></svg>Juntar</button>
     <button role="tab" aria-selected="false" data-tab="split" title="⌘2"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="5.5" cy="5.5" r="2.2"/><circle cx="5.5" cy="14.5" r="2.2"/><path d="M7.2 7l10 8M7.2 13l10-8"/></svg>Separar</button>
-    <button role="tab" aria-selected="false" data-tab="word" title="⌘3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 0 1 10.5-3L16 7M16 12a6 6 0 0 1-10.5 3L4 13"/><path d="M16 3v4h-4M4 17v-4h4"/></svg>PDF para Word</button>
+    <button role="tab" aria-selected="false" data-tab="remove" title="⌘3"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3h7l4 4v10H5z"/><path d="M8 11h5"/></svg>Remover páginas</button>
+    <div class="nav-h">Converter</div>
+    <button role="tab" aria-selected="false" data-tab="images" title="⌘4"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="2"/><circle cx="7.5" cy="8.5" r="1.4"/><path d="M3.5 14l4-3.5 3 2.5 2.5-2 3.5 3"/></svg>Imagens para PDF</button>
+    <button role="tab" aria-selected="false" data-tab="word" title="⌘5"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 0 1 10.5-3L16 7M16 12a6 6 0 0 1-10.5 3L4 13"/><path d="M16 3v4h-4M4 17v-4h4"/></svg>PDF para Word</button>
   </nav>
   <div class="spacer"></div>
   <button class="ghost" id="quit" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2M12 6l4 4-4 4M16 10H8"/></svg><span>Encerrar</span></button>
@@ -225,16 +237,16 @@ dialog::backdrop{background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(3px);ba
     <div class="fr" id="m-name-box"><label class="lb" for="m-name">Nome<small>Opcional</small></label><div class="ct"><input type="text" id="m-name" placeholder="Padrão: nome da pasta"></div></div>
     <div class="fr"><label class="lb" for="m-out">Salvar em<small>Opcional</small></label><div class="ct"><input type="text" id="m-out" placeholder="Padrão: Papelada_saida ao lado"></div></div>
   </div>
-  <div id="ord" class="group" hidden>
-    <div id="ord-bar">
+  <div id="m-ord" class="group ord" hidden>
+    <div class="ord-bar">
       <button class="b" data-sort="natural" type="button" title="Voltar à ordem original">Ordem natural</button>
       <button class="b" data-sort="az" type="button">A → Z</button>
       <button class="b" data-sort="za" type="button">Z → A</button>
       <button class="b" data-sort="rev" type="button">Inverter</button>
-      <span id="ord-sum"></span>
+      <span class="ord-sum"></span>
     </div>
-    <ol id="ord-list"></ol>
-    <div id="ord-out" hidden></div>
+    <ol class="ord-list"></ol>
+    <div class="ord-out" hidden></div>
   </div>
   <div class="actions"><button class="b" id="m-preview" type="button">Revisar e ordenar</button><button class="b p" id="m-go" type="button">Juntar</button></div>
 </section>
@@ -263,6 +275,52 @@ dialog::backdrop{background:rgba(0,0,0,.32);-webkit-backdrop-filter:blur(3px);ba
     <div class="pgs" id="s-pages"></div>
   </div>
   <div class="actions"><button class="b p" id="s-go" type="button">Separar</button></div>
+</section>
+
+<section id="remove" aria-labelledby="t-remove">
+  <header class="ph"><h1 id="t-remove">Remover páginas</h1><p>Tire do PDF as páginas que você não quer e salve uma cópia nova. O original não é alterado.</p></header>
+  <div class="group">
+    <div class="fr"><label class="lb" for="r-path">Arquivo</label><div class="ct"><input type="text" id="r-path" placeholder="Escolha um PDF"><button class="b" data-pick="r-path" data-kind="remove" type="button">Escolher…</button></div></div>
+    <div class="fr"><label class="lb" for="r-val">Remover<small>Páginas ou intervalos</small></label><div class="ct"><input type="text" id="r-val" placeholder="Ex.: 2, 5-7 (ou clique nas páginas abaixo)"></div></div>
+    <div class="fr"><label class="lb" for="r-out">Salvar em<small>Opcional</small></label><div class="ct"><input type="text" id="r-out" placeholder="Padrão: Papelada_saida ao lado"></div></div>
+  </div>
+  <div class="group" id="r-pages-box" hidden>
+    <div class="pgs-head"><span id="r-pages-t"></span><span id="r-pages-h"></span></div>
+    <div class="pgs" id="r-pages"></div>
+  </div>
+  <div class="actions"><button class="b p" id="r-go" type="button">Remover páginas</button></div>
+</section>
+
+<section id="images" aria-labelledby="t-images">
+  <header class="ph"><h1 id="t-images">Imagens para PDF</h1><p>Transforme fotos, digitalizações e capturas de tela (JPG, PNG, TIFF…) em PDF, na ordem que você escolher.</p></header>
+  <div class="group">
+    <div class="fr"><label class="lb" for="i-path">Origem</label><div class="ct"><input type="text" id="i-path" placeholder="Pasta, .zip ou imagem"><button class="b" data-pick="i-path" data-kind="images" type="button">Escolher…</button></div></div>
+    <div class="note">Entram imagens de subpastas e de arquivos compactados. A ordem segue a numeração dos nomes.</div>
+  </div>
+  <div class="group">
+    <div class="fr"><span class="lb" id="i-size-l">Página</span><div class="seg" role="radiogroup" aria-labelledby="i-size-l" data-opt="size">
+      <button type="button" role="radio" aria-checked="true" data-v="imagem">Do tamanho da imagem</button><button type="button" role="radio" aria-checked="false" data-v="a4">A4</button><button type="button" role="radio" aria-checked="false" data-v="carta">Carta</button></div></div>
+    <div class="fr" id="i-orient-box" hidden><span class="lb" id="i-orient-l">Orientação</span><div class="seg" role="radiogroup" aria-labelledby="i-orient-l" data-opt="orientation">
+      <button type="button" role="radio" aria-checked="true" data-v="auto">Automática</button><button type="button" role="radio" aria-checked="false" data-v="retrato">Retrato</button><button type="button" role="radio" aria-checked="false" data-v="paisagem">Paisagem</button></div></div>
+    <div class="fr"><span class="lb" id="i-margin-l">Margem</span><div class="seg" role="radiogroup" aria-labelledby="i-margin-l" data-opt="margin">
+      <button type="button" role="radio" aria-checked="true" data-v="nenhuma">Nenhuma</button><button type="button" role="radio" aria-checked="false" data-v="pequena">Pequena</button><button type="button" role="radio" aria-checked="false" data-v="grande">Grande</button></div></div>
+    <div class="fr"><span class="lb" id="i-mode-l">Resultado</span><div class="seg" role="radiogroup" aria-labelledby="i-mode-l" data-opt="mode">
+      <button type="button" role="radio" aria-checked="true" data-v="unico">Um PDF com tudo</button><button type="button" role="radio" aria-checked="false" data-v="cada">Um PDF por imagem</button></div></div>
+    <div class="fr" id="i-name-box"><label class="lb" for="i-name">Nome<small>Opcional</small></label><div class="ct"><input type="text" id="i-name" placeholder="Padrão: nome da pasta"></div></div>
+    <div class="fr"><label class="lb" for="i-out">Salvar em<small>Opcional</small></label><div class="ct"><input type="text" id="i-out" placeholder="Padrão: Papelada_saida ao lado"></div></div>
+  </div>
+  <div id="i-ord" class="group ord" hidden>
+    <div class="ord-bar">
+      <button class="b" data-sort="natural" type="button" title="Voltar à ordem original">Ordem natural</button>
+      <button class="b" data-sort="az" type="button">A → Z</button>
+      <button class="b" data-sort="za" type="button">Z → A</button>
+      <button class="b" data-sort="rev" type="button">Inverter</button>
+      <span class="ord-sum"></span>
+    </div>
+    <ol class="ord-list"></ol>
+    <div class="ord-out" hidden></div>
+  </div>
+  <div class="actions"><button class="b" id="i-preview" type="button">Revisar e ordenar</button><button class="b p" id="i-go" type="button">Converter para PDF</button></div>
 </section>
 
 <section id="word" aria-labelledby="t-word">
@@ -338,7 +396,7 @@ document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
 // kind: merge = pasta ou compactado | word = pasta ou PDF | split = so PDF
 const dlg = $('dlg');
 let kind = 'merge', alvo = null, atual = '', dados = null, sel = null, itens = [];
-const aceitaPasta = () => kind !== 'split';
+const aceitaPasta = () => !['split', 'remove'].includes(kind);
 const aceitaArquivo = it => !it.dir && !it.dim;
 const memo = {get() { try { return localStorage.getItem('papelada.dir') || ''; } catch (e) { return ''; } },
               set(v) { try { localStorage.setItem('papelada.dir', v); } catch (e) {} }};
@@ -364,6 +422,7 @@ async function abrir(caminho) {
   const atalhos = [...(dados.shortcuts || []), ...(dados.drives || []).map(d => ({name: 'Disco ' + d, path: d}))];
   $('side').innerHTML = atalhos.map(a => `<button type="button" data-p="${esc(a.path)}" class="${a.path === atual ? 'on' : ''}">${esc(a.name)}</button>`).join('');
   const arq = kind === 'merge' ? dados.archives.map(x => ({...x, ic: '📦'}))
+            : kind === 'images' ? [...dados.archives.map(x => ({...x, ic: '📦'})), ...dados.images.map(x => ({...x, ic: '🖼'}))]
             : dados.pdfs.map(x => ({...x, ic: '📄'}));
   itens = [...dados.dirs.map(x => ({...x, dir: 1, ic: '📁'})), ...arq];
   if (kind === 'merge') itens.push(...dados.pdfs.map(x => ({...x, ic: '📄', dim: 1})));  // so para contexto
@@ -425,18 +484,8 @@ $('list').onkeydown = e => {
 $('d-cancel').onclick = () => dlg.close();
 $('d-ok').onclick = () => escolher(sel || atual);
 
-// ---- juntar ----
-// ord guarda a ordem escolhida; so vale enquanto a pasta/arquivo for o mesmo.
-let ord = null;
+// ---- componentes reutilizaveis ----
 const nat = (x, y) => x.name.localeCompare(y.name, 'pt', {numeric: true, sensitivity: 'base'});
-const invalidar = () => { ord = null; $('ord').hidden = true; };
-$('m-path').addEventListener('input', invalidar);
-$('m-batch').onchange = () => { invalidar(); $('m-name-box').hidden = $('m-batch').checked; $('m-preview').hidden = $('m-batch').checked; };
-
-function mover(de, para) {
-  if (para < 0 || para >= ord.lista.length || de === para) return;
-  const [x] = ord.lista.splice(de, 1); ord.lista.splice(para, 0, x); desenharOrdem();
-}
 const ICON = {
   eye: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z"/><circle cx="10" cy="10" r="2.3"/></svg>',
   left: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12 4l-6 6 6 6"/></svg>',
@@ -447,33 +496,14 @@ const thumb = (id, p, w) => `/thumb?id=${id}&p=${p}&w=${w}`;
 const semImg = 'this.replaceWith(Object.assign(document.createElement(\'span\'),{className:\'noimg\',textContent:\'PDF\'}))';
 const img = (id, p, w, ok = true) => ok ? `<img src="${thumb(id, p, w)}" alt="" loading="lazy" draggable="false" onerror="${semImg}">` : '<span class="noimg">PDF</span>';
 
-function desenharOrdem() {
-  const n = ord.lista.length, pags = ord.lista.reduce((s, i) => s + (i.pages || 0), 0);
-  $('ord-sum').textContent = `${n} arquivo(s) · ${pags} página(s)`;
-  $('ord-list').innerHTML = ord.lista.map((it, i) => `<li draggable="true" data-i="${i}"><div class="th">${img(it.id, 0, 320, ord.thumbs)}<span class="ix">${i + 1}</span>
-    <div class="ov"><button class="ib" data-a="view" title="Visualizar" aria-label="Visualizar ${esc(base(it.name))}">${ICON.eye}</button><button class="ib" data-a="up" title="Mover para trás" aria-label="Mover para trás" ${i === 0 ? 'disabled' : ''}>${ICON.left}</button><button class="ib" data-a="down" title="Mover para frente" aria-label="Mover para frente" ${i === n - 1 ? 'disabled' : ''}>${ICON.right}</button><button class="ib" data-a="rm" title="Não incluir" aria-label="Não incluir">${ICON.x}</button></div></div>
-    <div class="nm" title="${esc(it.name)}">${esc(base(it.name))}</div><div class="pg">${it.pages ?? '?'} p.</div></li>`).join('')
-    || '<li style="grid-column:1/-1;cursor:default"><span class="nm">Nenhum arquivo selecionado.</span></li>';
-  const o = $('ord-out'); o.hidden = !ord.fora.length;
-  o.innerHTML = ord.fora.length ? 'Fora da junção: ' + ord.fora.map((x, i) => `<button data-r="${i}" title="Incluir de novo">+ ${esc(base(x.name))}</button>`).join('') : '';
-}
-$('ord-list').onclick = e => {
-  const b = e.target.closest('.ib'); if (!b) return;
-  const i = +b.closest('li').dataset.i, n = ord.lista.length;
-  ({view: () => abrirVisor(ord.lista[i].id, base(ord.lista[i].name), ord.lista[i].pages || 1),
-    up: () => mover(i, i - 1), down: () => mover(i, i + 1),
-    rm: () => { ord.fora.push(...ord.lista.splice(i, 1)); desenharOrdem(); }})[b.dataset.a]();
-};
-$('ord-list').ondblclick = e => { const li = e.target.closest('li'); if (li && !e.target.closest('.ib') && ord.lista[+li.dataset.i]) { const it = ord.lista[+li.dataset.i]; abrirVisor(it.id, base(it.name), it.pages || 1); } };
-
-// ---- visualizador de PDF ----
+// visualizador de PDF (e de imagens)
 let vis = null;
 function mostrarPagina() {
   const im = $('v-img'); im.classList.add('ld');
   im.onload = () => im.classList.remove('ld');
   im.onerror = () => { im.classList.remove('ld'); $('v-pg').textContent = 'Não foi possível exibir a página'; };
   im.src = thumb(vis.id, vis.p, 1100);
-  $('v-pg').textContent = `Página ${vis.p + 1} de ${vis.n}`;
+  $('v-pg').textContent = vis.n > 1 ? `Página ${vis.p + 1} de ${vis.n}` : '';
   $('v-prev').disabled = vis.p === 0; $('v-next').disabled = vis.p >= vis.n - 1;
   $('viewer').querySelector('.vw-body').scrollTop = 0;
   if (vis.p < vis.n - 1) new Image().src = thumb(vis.id, vis.p + 1, 1100);  // pre-carrega a proxima
@@ -490,36 +520,112 @@ $('v-close').onclick = () => $('viewer').close();
 $('viewer').addEventListener('keydown', e => { if (e.key === 'ArrowLeft') irPara(-1); if (e.key === 'ArrowRight') irPara(1); });
 $('viewer').addEventListener('click', e => { if (e.target === $('viewer')) $('viewer').close(); });
 
-$('ord-out').onclick = e => { const b = e.target.closest('[data-r]'); if (!b) return; ord.lista.push(...ord.fora.splice(+b.dataset.r, 1)); desenharOrdem(); };
-$('ord-bar').onclick = e => {
-  const b = e.target.closest('[data-sort]'); if (!b || !ord) return;
-  const todos = [...ord.lista];
-  ord.lista = {natural: () => ord.original.filter(o => todos.some(t => t.name === o.name)),
-    az: () => todos.sort(nat), za: () => todos.sort(nat).reverse(), rev: () => todos.reverse()}[b.dataset.sort]();
-  desenharOrdem();
-};
-// arrastar e soltar
-let arrasto = -1;
-$('ord-list').ondragstart = e => { const li = e.target.closest('li'); if (!li) return; arrasto = +li.dataset.i; li.classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(arrasto)); };
-$('ord-list').ondragover = e => { const li = e.target.closest('li'); if (!li || arrasto < 0) return; e.preventDefault(); $('ord-list').querySelectorAll('.over').forEach(x => x.classList.remove('over')); li.classList.add('over'); };
-$('ord-list').ondrop = e => { const li = e.target.closest('li'); if (!li || arrasto < 0) return; e.preventDefault(); mover(arrasto, +li.dataset.i); arrasto = -1; };
-$('ord-list').ondragend = () => { arrasto = -1; $('ord-list').querySelectorAll('.drag,.over').forEach(x => x.classList.remove('drag', 'over')); };
+// Grade de cartoes reordenavel (arrastar, setas, remover, ordenar), usada em Juntar e Imagens para PDF.
+function Ordenador(raiz, op = {}) {
+  const q = s => raiz.querySelector(s), lista = q('.ord-list');
+  let st = null, arrasto = -1;
+  const mover = (de, para) => {
+    if (!st || para < 0 || para >= st.lista.length || de === para) return;
+    const [x] = st.lista.splice(de, 1); st.lista.splice(para, 0, x); desenhar();
+  };
+  const rotulo = it => it.size ? `${it.size[0]}×${it.size[1]}` : `${it.pages ?? '?'} p.`;
+  function desenhar() {
+    const n = st.lista.length, pags = st.lista.reduce((s, i) => s + (i.pages || 0), 0);
+    q('.ord-sum').textContent = op.imagens ? `${n} imagem(ns)` : `${n} arquivo(s) · ${pags} página(s)`;
+    lista.innerHTML = st.lista.map((it, i) => `<li draggable="true" data-i="${i}"><div class="th">${img(it.id, 0, 320, st.thumbs)}<span class="ix">${i + 1}</span>
+      <div class="ov"><button class="ib" data-a="view" title="Visualizar" aria-label="Visualizar ${esc(base(it.name))}">${ICON.eye}</button><button class="ib" data-a="up" title="Mover para trás" aria-label="Mover para trás" ${i === 0 ? 'disabled' : ''}>${ICON.left}</button><button class="ib" data-a="down" title="Mover para frente" aria-label="Mover para frente" ${i === n - 1 ? 'disabled' : ''}>${ICON.right}</button><button class="ib" data-a="rm" title="Não incluir" aria-label="Não incluir">${ICON.x}</button></div></div>
+      <div class="nm" title="${esc(it.name)}">${esc(base(it.name))}</div><div class="pg">${rotulo(it)}</div></li>`).join('')
+      || '<li style="grid-column:1/-1;cursor:default"><span class="nm">Nada selecionado.</span></li>';
+    const o = q('.ord-out'); o.hidden = !st.fora.length;
+    o.innerHTML = st.fora.length ? (op.fora || 'Fora') + ': ' + st.fora.map((x, i) => `<button data-r="${i}" title="Incluir de novo">+ ${esc(base(x.name))}</button>`).join('') : '';
+  }
+  const abrir = it => abrirVisor(it.id, base(it.name), it.pages || 1);
+  lista.onclick = e => {
+    const b = e.target.closest('.ib'); if (!b) return;
+    const i = +b.closest('li').dataset.i;
+    ({view: () => abrir(st.lista[i]), up: () => mover(i, i - 1), down: () => mover(i, i + 1),
+      rm: () => { st.fora.push(...st.lista.splice(i, 1)); desenhar(); }})[b.dataset.a]();
+  };
+  lista.ondblclick = e => { const li = e.target.closest('li'); if (li && !e.target.closest('.ib') && st.lista[+li.dataset.i]) abrir(st.lista[+li.dataset.i]); };
+  q('.ord-out').onclick = e => { const b = e.target.closest('[data-r]'); if (!b) return; st.lista.push(...st.fora.splice(+b.dataset.r, 1)); desenhar(); };
+  q('.ord-bar').onclick = e => {
+    const b = e.target.closest('[data-sort]'); if (!b || !st) return;
+    const todos = [...st.lista];
+    st.lista = {natural: () => st.original.filter(o => todos.some(t => t.name === o.name)),
+      az: () => todos.sort(nat), za: () => todos.sort(nat).reverse(), rev: () => todos.reverse()}[b.dataset.sort]();
+    desenhar();
+  };
+  lista.ondragstart = e => { const li = e.target.closest('li'); if (!li) return; arrasto = +li.dataset.i; li.classList.add('drag'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(arrasto)); };
+  lista.ondragover = e => { const li = e.target.closest('li'); if (!li || arrasto < 0) return; e.preventDefault(); lista.querySelectorAll('.over').forEach(x => x.classList.remove('over')); li.classList.add('over'); };
+  lista.ondrop = e => { const li = e.target.closest('li'); if (!li || arrasto < 0) return; e.preventDefault(); mover(arrasto, +li.dataset.i); arrasto = -1; };
+  lista.ondragend = () => { arrasto = -1; lista.querySelectorAll('.drag,.over').forEach(x => x.classList.remove('drag', 'over')); };
+  return {
+    mostrar(r, path) { st = {path, original: r.items, lista: [...r.items], fora: [], thumbs: r.thumbs}; raiz.hidden = false; desenhar(); },
+    invalidar() { st = null; raiz.hidden = true; },
+    ordem(path) { return st && st.path === path ? st.lista.map(x => x.name) : null; },
+  };
+}
 
+// Grade de paginas de um PDF: clique seleciona (e preenche o campo) ou amplia.
+const faixas = s => { const a = [...s].sort((x, y) => x - y), out = []; for (let i = 0; i < a.length;) { let j = i; while (a[j + 1] === a[j] + 1) j++; out.push(j > i ? `${a[i]}-${a[j]}` : `${a[i]}`); i = j + 1; } return out.join(', '); };
+const lerFaixas = (txt, n) => { const out = new Set(); for (const p of txt.split(/[,;]/)) { const m = p.trim().match(/^(\d*)\s*-\s*(\d*)$|^(\d+)$/); if (!m) continue; const a = m[3] ? +m[3] : +(m[1] || 1), b = m[3] ? +m[3] : +(m[2] || n); for (let i = Math.max(a, 1); i <= Math.min(b, n); i++) out.add(i); } return out; };
+function GradePaginas(c) {
+  let sp = {id: null, n: 0, nome: '', thumbs: true, sel: new Set()}, t;
+  function desenhar() {
+    $(c.box).hidden = !sp.id; if (!sp.id) return;
+    const cap = Math.min(sp.n, 300), sele = c.selecionavel();
+    $(c.titulo).textContent = `${sp.nome} · ${sp.n} página(s)` + (sp.n > cap ? ` (mostrando ${cap})` : '');
+    $(c.dica).textContent = sele ? c.dicaSel : 'Clique para ampliar';
+    $(c.grade).innerHTML = Array.from({length: cap}, (_, i) => `<button type="button" class="pgc ${sp.sel.has(i + 1) ? c.cls : ''}" data-p="${i + 1}" aria-pressed="${sp.sel.has(i + 1)}" aria-label="Página ${i + 1}"><span class="th">${img(sp.id, i, 220, sp.thumbs)}</span><span class="n">${i + 1}</span><span class="eye" role="button" data-eye="${i + 1}" title="Ampliar" aria-label="Ampliar página ${i + 1}">${ICON.eye}</span></button>`).join('');
+  }
+  async function carregar() {
+    const v = $(c.path).value.trim();
+    if (!/\.pdf$/i.test(v)) { sp.id = null; return desenhar(); }
+    try { const r = await api('/api/preview-file', {path: v}); sp = {id: r.id, n: r.pages, nome: r.name, thumbs: r.thumbs, sel: new Set()}; }
+    catch (e) { sp.id = null; }
+    desenhar();
+  }
+  $(c.path).addEventListener('input', () => { clearTimeout(t); t = setTimeout(carregar, 350); });
+  $(c.val).addEventListener('input', () => { if (sp.id && c.selecionavel()) { sp.sel = lerFaixas($(c.val).value, sp.n); desenhar(); } });
+  $(c.grade).onclick = e => {
+    const card = e.target.closest('.pgc'); if (!card) return;
+    const p = +card.dataset.p;
+    if (e.target.closest('[data-eye]') || !c.selecionavel()) return abrirVisor(sp.id, sp.nome, sp.n, p - 1);
+    sp.sel.has(p) ? sp.sel.delete(p) : sp.sel.add(p);
+    card.classList.toggle(c.cls, sp.sel.has(p)); card.setAttribute('aria-pressed', sp.sel.has(p));
+    $(c.val).value = faixas(sp.sel);
+  };
+  return {desenhar};
+}
+
+// Controle segmentado: devolve o valor marcado de cada grupo `data-opt`.
+function Seg(raiz, aoMudar) {
+  raiz.addEventListener('click', e => {
+    const b = e.target.closest('button[data-v]'); if (!b) return;
+    raiz.querySelectorAll('button[data-v]').forEach(x => x.setAttribute('aria-checked', x === b));
+    aoMudar && aoMudar(b.dataset.v);
+  });
+  return () => raiz.querySelector('[aria-checked=true]').dataset.v;
+}
+
+// ---- juntar ----
+const ordM = Ordenador($('m-ord'), {fora: 'Fora da junção'});
+$('m-path').addEventListener('input', ordM.invalidar);
+$('m-batch').onchange = () => { ordM.invalidar(); $('m-name-box').hidden = $('m-batch').checked; $('m-preview').hidden = $('m-batch').checked; };
 $('m-preview').onclick = e => run(e.target, 'Lendo os arquivos...', async () => {
   const r = await api('/api/merge-preview', {path: $('m-path').value});
-  ord = {path: $('m-path').value, original: r.items, lista: [...r.items], fora: [], thumbs: r.thumbs};
-  $('ord').hidden = false; desenharOrdem();
+  ordM.mostrar(r, $('m-path').value);
   return `<span class="ok">${r.count} arquivo(s), ${r.pages} página(s).</span> Arraste ou use os botões para mudar a ordem; depois clique em <b>Juntar</b>.${avisos(r.avisos)}`;
 });
 $('m-go').onclick = e => run(e.target, 'Juntando...', async () => {
-  const base = {path: $('m-path').value, output: $('m-out').value};
+  const corpo = {path: $('m-path').value, output: $('m-out').value};
   if ($('m-batch').checked) {
-    const r = await api('/api/batch', base);
+    const r = await api('/api/batch', corpo);
     return `<span class="ok">${r.ok} de ${r.total} pasta(s) juntadas</span><ul>${r.resultados.map(x =>
       `<li>${esc(x.nome)}: ${x.status === 'ok' ? `${x.count} arquivo(s), ${x.pages} páginas — ${link(x.output)}` : esc(x.status)}${avisos(x.avisos)}</li>`).join('')}</ul><p class="warn">Salvos em ${esc(r.output)}</p>`;
   }
-  const corpo = {...base, name: $('m-name').value};
-  if (ord && ord.path === $('m-path').value) corpo.order = ord.lista.map(x => x.name);
+  corpo.name = $('m-name').value;
+  const ordem = ordM.ordem($('m-path').value); if (ordem) corpo.order = ordem;
   const r = await api('/api/merge', corpo);
   return `<span class="ok">Pronto: ${r.count} arquivo(s), ${r.pages} páginas</span><p>${link(r.output)}</p><p class="warn">${esc(r.output)}</p>${avisos(r.avisos)}`;
 });
@@ -540,35 +646,41 @@ $('s-go').onclick = e => run(e.target, 'Separando...', async () => {
   const r = await api('/api/split', {path: $('s-path').value, mode: $('s-mode').value, value: $('s-val').value, output: $('s-out').value});
   return `<span class="ok">${r.files.length} arquivo(s) gerado(s) (original: ${r.total_pages} páginas)</span><ul>${r.files.map(f => `<li>${link(f)}</li>`).join('')}</ul><p class="warn">Salvos em ${esc(r.output)}</p>`;
 });
+const gradeS = GradePaginas({path: 's-path', box: 's-pages-box', titulo: 's-pages-t', dica: 's-pages-h', grade: 's-pages', val: 's-val',
+  selecionavel: () => ['intervalos', 'extrair'].includes($('s-mode').value), dicaSel: 'Clique nas páginas para selecioná-las', cls: 'sel'});
+document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', gradeS.desenhar));
 
-// paginas do PDF escolhido: clique seleciona (intervalos/extrair) ou amplia
-let sp = {id: null, n: 0, nome: '', thumbs: true, sel: new Set()}, tsp;
-const selecionaveis = () => ['intervalos', 'extrair'].includes($('s-mode').value);
-const faixas = s => { const a = [...s].sort((x, y) => x - y), out = []; for (let i = 0; i < a.length;) { let j = i; while (a[j + 1] === a[j] + 1) j++; out.push(j > i ? `${a[i]}-${a[j]}` : `${a[i]}`); i = j + 1; } return out.join(', '); };
-function desenharPaginas() {
-  const box = $('s-pages-box'); box.hidden = !sp.id; if (!sp.id) return;
-  const cap = Math.min(sp.n, 300);
-  $('s-pages-t').textContent = `${sp.nome} · ${sp.n} página(s)` + (sp.n > cap ? ` (mostrando ${cap})` : '');
-  $('s-pages-h').textContent = selecionaveis() ? 'Clique nas páginas para selecioná-las' : 'Clique para ampliar';
-  $('s-pages').innerHTML = Array.from({length: cap}, (_, i) => `<button type="button" class="pgc ${sp.sel.has(i + 1) ? 'sel' : ''}" data-p="${i + 1}" aria-pressed="${sp.sel.has(i + 1)}" aria-label="Página ${i + 1}"><span class="th">${img(sp.id, i, 220, sp.thumbs)}</span><span class="n">${i + 1}</span><span class="eye" role="button" data-eye="${i + 1}" title="Ampliar" aria-label="Ampliar página ${i + 1}">${ICON.eye}</span></button>`).join('');
-}
-async function carregarPaginas() {
-  const v = $('s-path').value.trim();
-  if (!/\.pdf$/i.test(v)) { sp.id = null; return desenharPaginas(); }
-  try { const r = await api('/api/preview-file', {path: v}); sp = {id: r.id, n: r.pages, nome: r.name, thumbs: r.thumbs, sel: new Set()}; }
-  catch (e) { sp.id = null; }
-  desenharPaginas();
-}
-$('s-path').addEventListener('input', () => { clearTimeout(tsp); tsp = setTimeout(carregarPaginas, 350); });
-$('s-pages').onclick = e => {
-  const card = e.target.closest('.pgc'); if (!card) return;
-  const p = +card.dataset.p;
-  if (e.target.closest('[data-eye]') || !selecionaveis()) return abrirVisor(sp.id, sp.nome, sp.n, p - 1);
-  sp.sel.has(p) ? sp.sel.delete(p) : sp.sel.add(p);
-  card.classList.toggle('sel', sp.sel.has(p)); card.setAttribute('aria-pressed', sp.sel.has(p));
-  $('s-val').value = faixas(sp.sel);
-};
-document.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', desenharPaginas));
+// ---- remover paginas ----
+GradePaginas({path: 'r-path', box: 'r-pages-box', titulo: 'r-pages-t', dica: 'r-pages-h', grade: 'r-pages', val: 'r-val',
+  selecionavel: () => true, dicaSel: 'Clique nas páginas que deseja remover', cls: 'del'});
+$('r-go').onclick = e => run(e.target, 'Removendo...', async () => {
+  const r = await api('/api/remove-pages', {path: $('r-path').value, value: $('r-val').value, output: $('r-out').value});
+  return `<span class="ok">${r.removed} página(s) removida(s). Sobraram ${r.remaining} de ${r.total}.</span><p>${link(r.output)}</p><p class="warn">${esc(r.output)}</p>`;
+});
+
+// ---- imagens para PDF ----
+const ordI = Ordenador($('i-ord'), {fora: 'Fora da conversão', imagens: true});
+const segI = {};
+document.querySelectorAll('#images [data-opt]').forEach(el => {
+  segI[el.dataset.opt] = Seg(el, () => {
+    $('i-orient-box').hidden = segI.size() === 'imagem';
+    $('i-name-box').hidden = segI.mode() === 'cada';
+  });
+});
+$('i-path').addEventListener('input', ordI.invalidar);
+$('i-preview').onclick = e => run(e.target, 'Lendo as imagens...', async () => {
+  const r = await api('/api/images-preview', {path: $('i-path').value});
+  ordI.mostrar(r, $('i-path').value);
+  return `<span class="ok">${r.count} imagem(ns).</span> Arraste para reordenar ou remova as que não quiser; depois clique em <b>Converter para PDF</b>.${avisos(r.avisos)}`;
+});
+$('i-go').onclick = e => run(e.target, 'Convertendo...', async () => {
+  const corpo = {path: $('i-path').value, output: $('i-out').value, name: $('i-name').value,
+    size: segI.size(), orientation: segI.orientation(), margin: segI.margin(), mode: segI.mode()};
+  const ordem = ordI.ordem($('i-path').value); if (ordem) corpo.order = ordem;
+  const r = await api('/api/images', corpo);
+  const lista = r.outputs.length > 1 ? `<ul>${r.outputs.map(o => `<li>${link(o)}</li>`).join('')}</ul>` : `<p>${link(r.outputs[0])}</p>`;
+  return `<span class="ok">${r.outputs.length > 1 ? `${r.outputs.length} PDFs gerados` : `PDF com ${r.pages} página(s)`}</span>${lista}<p class="warn">${esc(r.output)}</p>${avisos(r.avisos)}`;
+});
 
 // ---- word ----
 $('w-view').onclick = async e => {
@@ -590,7 +702,7 @@ $('quit').onclick = async () => {
 document.addEventListener('keydown', e => {
   if (!(e.metaKey || e.ctrlKey) || dlg.open) return;
   const tabs = [...document.querySelectorAll('nav button')];
-  if (/^[1-3]$/.test(e.key)) { e.preventDefault(); tabs[+e.key - 1].click(); }
+  if (/^[1-5]$/.test(e.key)) { e.preventDefault(); tabs[+e.key - 1].click(); }
   const atual = document.querySelector('section.on');
   if (e.key === 'o') { e.preventDefault(); atual.querySelector('[data-pick]').click(); }
   if (e.key === 'Enter') { e.preventDefault(); atual.querySelector('.b.p').click(); }

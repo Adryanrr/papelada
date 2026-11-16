@@ -17,6 +17,39 @@ def disponivel() -> bool:
     return _mu is not None
 
 
+def _exigir():
+    if _mu is None:
+        raise ValueError("Recurso indisponivel: instale `pymupdf`.")
+    return _mu
+
+
+def rect(x0: float, y0: float, x1: float, y1: float):
+    return _exigir().Rect(x0, y0, x1, y1)
+
+
+def novo_documento():
+    return _exigir().open()
+
+
+def _eh_imagem(p: Path) -> bool:
+    return p.suffix.lower() in {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".gif", ".webp"}
+
+
+def _miniatura_imagem(arq: Path, largura: int) -> bytes:
+    import io
+
+    from PIL import Image, ImageOps
+    try:
+        with Image.open(arq) as im:
+            im = ImageOps.exif_transpose(im).convert("RGB")
+            im.thumbnail((largura, largura * 4))
+            buf = io.BytesIO()
+            im.save(buf, "JPEG", quality=82)
+            return buf.getvalue()
+    except Exception:
+        raise ValueError("Nao foi possivel exibir a imagem.") from None
+
+
 def paginas(pdf: Path) -> int:
     """Numero de paginas; ValueError se nao for um PDF legivel e sem senha."""
     if _mu is None:
@@ -33,7 +66,9 @@ def paginas(pdf: Path) -> int:
 
 
 def renderizar(pdf: Path, pagina: int, largura: int) -> bytes:
-    """Imagem JPEG da pagina `pagina` (0 = primeira) com `largura` px."""
+    """Imagem JPEG da pagina `pagina` (0 = primeira) com `largura` px (ou da propria imagem)."""
+    if _eh_imagem(pdf):
+        return _miniatura_imagem(pdf, largura)
     if _mu is None:
         raise ValueError("Visualizacao indisponivel: instale `pymupdf`.")
     try:

@@ -29,13 +29,19 @@ O Papelada roda no seu computador, sem limites, e foi pensado para **muitos arqu
 | **Em lote** | Cada subpasta (ou arquivo compactado solto) vira um PDF, tudo de uma vez. |
 | **Revisar e ordenar** | Miniaturas de cada arquivo, número de páginas, arrastar para reordenar, tirar arquivos da junção, ordenar A→Z / Z→A e abrir qualquer PDF no visualizador. |
 | **Separar** | Uma página por arquivo, por intervalos (`1-3, 5, 8-10`), em blocos de N páginas ou extraindo só as páginas escolhidas. Você vê as páginas em miniatura e seleciona clicando. |
+| **Remover páginas** | Escolha as páginas clicando nas miniaturas (ou digite `2, 5-7`) e salve uma cópia sem elas. O original não é alterado. |
+| **Imagens para PDF** | Fotos, digitalizações e capturas de tela (JPG, PNG, TIFF, WebP…) de uma pasta, `.zip` ou arquivo viram PDF, na ordem que você escolher. Página do tamanho da imagem, A4 ou Carta, orientação automática, margem e opção de um PDF por imagem. Corrige fotos giradas pelo celular (EXIF). |
 | **PDF para Word** | Converte um PDF, ou todos os PDFs de uma pasta, em `.docx` editável. |
 | **Visualizador** | Abre qualquer PDF em tela grande, página a página. |
-| **Visual nativo** | Interface no padrão de design da Apple, com tema claro e escuro automáticos e atalhos de teclado (⌘/Ctrl+1, 2, 3, O e Enter). |
+| **Visual nativo** | Interface no padrão de design da Apple, com tema claro e escuro automáticos e atalhos de teclado (⌘/Ctrl+1 a 5, O e Enter). |
 
 <p align="center">
   <img src="docs/screenshots/separar.png" width="420" alt="Separar: seleção de páginas por miniatura">
   <img src="docs/screenshots/visualizador.png" width="420" alt="Visualizador de PDF">
+</p>
+<p align="center">
+  <img src="docs/screenshots/remover.png" width="420" alt="Remover páginas: páginas marcadas em vermelho">
+  <img src="docs/screenshots/imagens.png" width="420" alt="Imagens para PDF: opções de página, margem e ordem">
 </p>
 <p align="center"><img src="docs/screenshots/juntar-dark.png" width="860" alt="Tema escuro"></p>
 
@@ -67,14 +73,14 @@ Dados do iLovePDF conferidos na página pública de planos em 16/11/2026; eles p
 | Organizar | Juntar PDF | até 25 arquivos, 100 MB | até 500 arquivos, 4 GB | ✅ sem limites |
 | Organizar | Dividir PDF | 1 arquivo, 100 MB | 4 GB | ✅ |
 | Organizar | Dividir de forma inteligente (IA) | — | até 200 páginas | ❌ |
-| Organizar | Remover páginas | ✔ | ✔ | 🟡 use *Extrair* com as páginas que ficam |
+| Organizar | Remover páginas | ✔ | ✔ | ✅ por miniatura ou intervalo |
 | Organizar | Extrair páginas | ✔ | ✔ | ✅ |
 | Organizar | Organizar páginas (reordenar, girar, apagar) | até 5 arquivos | até 20 | ❌ |
 | Organizar | Digitalizar e transformar em PDF | só no app móvel | ✔ | ❌ |
 | Otimizar | Comprimir PDF | 2 arquivos, 200 MB | 10 arquivos, 4 GB | ❌ |
 | Otimizar | Reparar PDF | ✔ | ✔ | ❌ |
 | Otimizar | OCR (reconhecimento de texto) | básico, 15 MB | avançado | ❌ |
-| Converter para PDF | JPG / imagens para PDF | até 20 imagens | até 500 | 🟡 imagens dentro de pastas e `.zip` viram páginas ao juntar |
+| Converter para PDF | JPG / imagens para PDF | até 20 imagens | até 500 | ✅ sem limites, com tamanho, orientação e margem |
 | Converter para PDF | Word para PDF | 15 MB | 4 GB | ❌ |
 | Converter para PDF | PowerPoint para PDF | 15 MB | 4 GB | ❌ |
 | Converter para PDF | Excel para PDF | 15 MB | 4 GB | ❌ |
@@ -101,7 +107,7 @@ Dados do iLovePDF conferidos na página pública de planos em 16/11/2026; eles p
 | Inteligência | PDF para Markdown | ✔ | ✔ | ❌ |
 | Automação | Fluxos de trabalho (encadear ferramentas) | — | ✔ | ❌ |
 
-**Placar das 35 ferramentas:** 4 prontas · 2 parciais · 29 pendentes.
+**Placar das 35 ferramentas:** 6 prontas · 29 pendentes.
 
 ### Plataforma e planos
 
@@ -124,14 +130,15 @@ Dados do iLovePDF conferidos na página pública de planos em 16/11/2026; eles p
 A ordem abaixo prioriza o que é útil no dia a dia e viável sem serviços externos. Quer ajudar? Abra uma [issue](https://github.com/Adryanrr/papelada/issues) ou um pull request.
 
 **Fase 1: edição e organização de páginas** (PyMuPDF / pypdf)
-- [ ] Remover páginas (com seleção por miniatura)
+- [x] Remover páginas (com seleção por miniatura)
 - [ ] Organizar páginas: reordenar, girar e apagar na grade
 - [ ] Girar PDF
 - [ ] Números de página
 - [ ] Marca d'água (texto e imagem)
 - [ ] Recortar PDF
 - [ ] Proteger e desbloquear com senha (e pedir a senha ao juntar)
-- [ ] PDF para JPG e imagens para PDF como ferramentas próprias
+- [x] Imagens para PDF (tamanho de página, orientação, margem e ordem)
+- [ ] PDF para JPG
 - [ ] Comprimir PDF
 - [ ] Reparar PDF
 - [ ] PDF para Markdown

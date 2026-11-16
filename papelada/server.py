@@ -18,7 +18,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 
-from . import __version__, convert, fsbrowse, merge, preview, split
+from . import __version__, convert, fsbrowse, images, merge, preview, remove, split
 
 HOST = "127.0.0.1"
 PORTA_PADRAO = 8765
@@ -74,6 +74,39 @@ def _api_previa_juntar(p: dict) -> dict:
         item["id"] = _novo_id(Path(item.pop("path")))
         _sessao["ids"].append(item["id"])
     return {**r, "thumbs": preview.disponivel()}
+
+
+def _api_previa_imagens(p: dict) -> dict:
+    """Imagens na ordem em que virarao paginas, com id para miniaturas."""
+    _limpar_sessao()
+    pasta = tempfile.mkdtemp(prefix="papelada-")
+    _sessao["dir"] = pasta
+    try:
+        r = images.listar(_pasta(p), Path(pasta))
+    except Exception:
+        _limpar_sessao()
+        raise
+    for item in r["items"]:
+        item["id"] = _novo_id(Path(item.pop("path")))
+        _sessao["ids"].append(item["id"])
+    return {**r, "thumbs": True}
+
+
+def _api_imagens(p: dict) -> dict:
+    ordem = p.get("order")
+    if ordem is not None and not (isinstance(ordem, list) and all(isinstance(x, str) for x in ordem)):
+        raise ValueError("Ordem invalida.")
+    r = images.imagens_para_pdf(_pasta(p), str(p.get("name") or ""), p.get("output") or None, ordem,
+                                str(p.get("size") or "imagem"), str(p.get("orientation") or "auto"),
+                                str(p.get("margin") or "nenhuma"), str(p.get("mode") or "unico"))
+    _registrar(*r["outputs"])
+    return r
+
+
+def _api_remover(p: dict) -> dict:
+    r = remove.remover_paginas(_pasta(p), str(p.get("value") or ""), p.get("output") or None)
+    _registrar(r["output"])
+    return r
 
 
 def _api_previa_arquivo(p: dict) -> dict:
@@ -136,6 +169,9 @@ ROTAS = {
     "/api/list": lambda p: fsbrowse.listar(_pasta(p)),
     "/api/merge-preview": _api_previa_juntar,
     "/api/preview-file": _api_previa_arquivo,
+    "/api/images-preview": _api_previa_imagens,
+    "/api/images": _api_imagens,
+    "/api/remove-pages": _api_remover,
     "/api/merge": _api_juntar,
     "/api/batch": _api_lote,
     "/api/split": _api_separar,
